@@ -16,7 +16,9 @@ export default class QAButton extends Component {
 const styles = StyleSheet.create({
     button: {
       margin: 20,
-      width: 120,
+      minWidth: 100,
+      paddingLeft: 20,
+      paddingRight: 20,
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: '#16966A',
