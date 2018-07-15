@@ -1,94 +1,138 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Queue & A</title>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- might remove this -->
-  <title>Queue + A</title>
+    <!-- Bootstrap --><!-- BootStrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
+	<!-- Stylesheets  -->
+		<link href="css/or_main.css" rel="stylesheet" type="text/css">
+		<link href="css/or_navbar.css" rel="stylesheet" type="text/css">
+	  	<link href="css/or_index.css" rel="stylesheet" type="text/css">
 
+	<!-- Fonts  -->
+	 <link href="https://fonts.googleapis.com/css?family=Barlow:400,500,600" rel="stylesheet">
+	 <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
 
-  <!-- Bootstrap -->
-  <!--currently shifts navbar to center -->
-  <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
--->
-
-  <link rel="stylesheet" href="styles/body.css">
-  <link rel="stylesheet" href="styles/navbar.css">
-  <link rel="stylesheet" href="styles/sidebar.css">
-
-
-<!-- favicon files -->
-  <link rel="apple-touch-icon" sizes="144x144" href="favicon_files/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon_files/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon_files/favicon-16x16.png">
-  <link rel="manifest" href="favicon_files/site.webmanifest">
-  <link rel="mask-icon" href="favicon_files/safari-pinned-tab.svg" color="#5bbad5">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
-
-</head>
+	 <!-- Scripts -->
+  </head>
 
 
-<body>
+  <body>
 
+	 <!-- NAVBAR  -->
+	 <nav class="navbar navbar-expand-sm navbar-default">
+		 <a href="#"><img src="images/logo_black.png" width="200px" height="auto" alt=""></a>
 
-  <div class = "navbar">
-    <div class = "container">
-          <div class = "logo_div">
-            <img src = "images/logo.png" alt = "" class = "logo">
-          </div>
+        <ul class="navbar-nav ml-auto">
+			<li class="nav-item active">
+                <!-- <a class="nav-link" href="#">Home</a> -->
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="login.html">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="register.html">Register</a>
+            </li>
+        </ul>
+	 </nav>
 
-          <div class = "navbar_links">
-            <ul class = "menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="settings.html">Settings</a></li>
-                <li><a href="#">Sign Out</a></li>
-            </ul>
-          </div>
-    </div>
-  </div>
+	 <div class="home-overhead">
+	 	<div class="about-card">
+			<div class="quote">
+				Streamline your lecture with an easy-to-use question queue and interactive polling system
+			</div>
+		</div>
 
+		<div class="info-card">
+			<div class="info-header">
+				What is Queue &amp; A?
+				<hr>
+			</div>
 
-  <!-- Sidebar -->
-  <div class="wrapper">
+			<div class="info-body">
+				Queue &amp; A is an app made to benefit both students and professors when in a classroom environment. The goal is to streamline lectures by allowing students to ask questions without having to raise their hand and interrupt the professor mid-thought. The professor can then view the queue of questions when they feel it best fits into the lecture, answering questions and also storing them for later. Additionally, students who are too nervous to ask questions in front of a large class will be comforted by the anonymity of our question system. Queue &amp; A also offers polling services to help professors further interact with their classroom.
+			</div>
 
-      <nav id="sidebar">
+			<div class="info-columns-container">
+				<div class="info-column">
+					<img src="images/icon4.png" alt="icon4">
+					<div class = "info-column-title">Website for professors</div>
+					<div class = "info-columns-text">Access all features including the question queue and polling system </div>
 
+					<a href="register.html"><button type="button" class="btn btn-outline-success">Register Now</button></a>
+				</div>
 
-          <ul class="list-unstyled components">
-              <p>This is a title!!</p>
-              <li>
-                  <a href="#">Sidebar</a>
-              </li>
-              <li>
-                  <a href="#">Classes</a>
-              </li>
-              <li>
-                  <a href="#">Sessions</a>
-              </li>
-              <li>
-                  <a href="#">Will Fix!</a>
-              </li>
-          </ul>
+				<div class="info-column">
+					<img src="images/icon5.png" alt="icon5">
+					<div class = "info-column-title">App for students</div>
+					<div class = "info-columns-text">Access the ability to ask questions in class and answer polls created by your professor </div>
 
-          <div id = "copyright">
-            © 2018 Queue and A. All Rights Reserved.
-          </div>
-
-      </nav>
-
-  </div>
+					<a href="http://cop4331-2.com/APK/app-debug.apk"><button type="button" class="btn-android"></button></a>
+				</div>
+			</div>
 
 
 
-</body>
+		</div>
+
+
+
+		<div class = "features-card">
+
+			<div class = "feature-row">
+				<img src="images/icon1.png" alt ="icon1">
+				<div class = "feature-body">
+					<div class = "feature-title">
+						Easy class creation
+					</div>
+					<div class = "feature-text">
+						Create a class with the press of a button. Students can instantly join the class that you create using the given class code.
+					</div>
+				</div>
+			</div>
+
+			<div class = "feature-row">
+				<div class = "feature-body">
+					<div class = "feature-title">
+						Streamlined queuing system
+					</div>
+					<div class = "feature-text">
+						Make sessions in which students can submit their questions. These questions will be sent directly to your screen where you can sort through them and answer when you see fit.
+					</div>
+				</div>
+				<img src="images/icon2.png" alt ="icon2">
+			</div>
+
+			<div class = "feature-row">
+				<img src="images/icon3.png" alt ="icon3">
+				<div class = "feature-body">
+					<div class = "feature-title">
+						Interactive polling system
+					</div>
+					<div class = "feature-text">
+						Turn questions that students ask into an interactive poll at the click of a button. Display poll results with a real-time, easy-to-read chart right on your screen.
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="footer-card">
+		 		&copy 2018 Queue and A. All Rights Reserved.
+		</div>
+
+
+
+	 </div>
 
 
 
 
 
-
-
-
+  </body>
 </html>
