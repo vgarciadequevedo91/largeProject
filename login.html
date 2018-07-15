@@ -1,0 +1,95 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- might remove this -->
+  <title>Queue + A</title>
+
+
+
+  <!-- Bootstrap -->
+  <!--currently shifts navbar to center -->
+  <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+-->
+
+  <link rel="stylesheet" href="css/body.css" type="text/css">
+  <link rel="stylesheet" href="css/navbar.css" type="text/css">
+  <link rel="stylesheet" href="css/sidebar.css" type="text/css">
+
+
+<!-- favicon files -->
+  <link rel="apple-touch-icon" sizes="144x144" href="favicon_files/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon_files/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon_files/favicon-16x16.png">
+  <link rel="manifest" href="favicon_files/site.webmanifest">
+  <link rel="mask-icon" href="favicon_files/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+</head>
+
+
+<body>
+
+
+  <div class = "navbar">
+    <div class = "container">
+          <div class = "logo_div">
+            <a href="index.html"><img src = "images/logo.png" alt = "" class = "logo"></a>
+          </div>
+
+          <div class = "navbar_links">
+            <ul class = "menu">
+              <!-- SHOULD BE REMOVED. ONLY KEPT TO EASILY NAVIGATE TO MAIN PAGE -->
+                <li><a href="main.html">Home</a></li>
+            </ul>
+          </div>
+    </div>
+  </div>
+
+
+  <div class = "login_container">
+
+      <div class = "loginimg">
+        <img src = "images/medium_q.png" alt = "" class = "logo">
+      </div>
+
+<!-- THE FOLLOWING 'LOGIN' DIV IS TAKEN FROM PROJECT1 LOGIN -->
+      <div class = "login">
+            <br/><h3>Please Log In</h3>
+            <br/>
+            <!-- Username -->
+              <input type = "text" placeholder = "Enter your username" id = "loginUser" required>
+            <br/>
+            <!-- Password -->
+              <input type = "password" placeholder = "Enter your password" id = "loginPassword" required>
+            </br>
+          <div class = "libutton">
+              <br/><button type = "button" id = "loginButton" class = "buttons" onclick="doLogin();">
+              Log In</button><br/>
+          </div>
+
+            <!-- <span id = "loginResult"></span> -->
+
+            <div class = "toregister">
+                <li>
+                  <a href="register.html">Not a member? Click here to register.</a>
+                </li>
+            </div>
+
+      </div>
+
+
+  </div>
+
+
+</body>
+
+
+
+
+
+
+
+</html>
