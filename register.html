@@ -49,32 +49,35 @@
   </div>
 
 
-  <div class = "login_container">
+  <div class = "register_container">
 
       <div class = "loginimg">
         <img src = "images/medium_q.png" alt = "" class = "logo">
       </div>
 
 <!-- THE FOLLOWING 'LOGIN' DIV IS TAKEN FROM PROJECT1 LOGIN -->
-      <div class = "login">
-            <br/><h3>Welcome Back Professor</h3>
+      <div class = "register">
+            <br/><h3>Hello Professor<br/></h3><h4>Enter your information to get started<br/></h4>
             <br/>
             <!-- Username -->
-              <input type = "text" placeholder = "Enter your username" id = "loginUser" required>
+              <input type = "text" placeholder = "Enter your username" id = "registerUser" required>
             <br/>
             <!-- Password -->
-              <input type = "password" placeholder = "Enter your password" id = "loginPassword" required>
+              <input type = "text" placeholder = "Enter your password" id = "registerPassword" required>
             </br>
+            <!-- VERIFY USER REENTERED SAME PASSWORD -->
+            <input type = "text" placeholder = "Re-enter your password" id = "checkPassword" required>
+          </br>
           <div class = "libutton">
-              <br/><button type = "button" id = "loginButton" class = "buttons" onclick="doLogin();">
-              Log In</button><br/>
+              <br/><button type = "button" id = "loginButton" class = "buttons" onclick="doRegister();">
+              Register</button><br/>
           </div>
 
             <!-- <span id = "loginResult"></span> -->
 
             <div class = "switch_loginreg">
                 <li>
-                  <a href="register.html">Not a member? Click here to register.</a>
+                  <a href="login.html">Already a member? Click here to log in.</a>
                 </li>
             </div>
 
