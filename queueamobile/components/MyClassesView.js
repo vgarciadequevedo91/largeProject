@@ -4,9 +4,18 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import TextField from './TextField';
 import QAButton from './QAButton';
 import Subhead from './Subhead';
+import ClassModel from '../ClassModel';
 
 export default class MyClassesView extends Component {
+  static navigationOptions = {
+    header: null
+  }
+
   render() {
+    joinClass = (id) => {
+      let myClass = new ClassModel('My Cool Class', id)
+      this.props.navigation.navigate('ClassDetailView', myClass)
+    }
     return (
       <KeyboardAwareScrollView contentContainerStyle={styles.container} keyboardDismissMode='on-drag'>
         <View style={styles.form}>
@@ -16,7 +25,7 @@ export default class MyClassesView extends Component {
           <Subhead text='Class ID'/>
           <TextField placeholder='Enter the ID given by your instructor' keyboardType='numeric' />
           <QAButton 
-              onPress={this.logIn} 
+              onPress={() => joinClass('12345')} 
               title='Join'
           />
         </View>
@@ -24,21 +33,17 @@ export default class MyClassesView extends Component {
       </KeyboardAwareScrollView>
     );
   }
-
-  logIn() {
-    // log in here?
-  }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: '#fff',
     },
     form: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#fff',
       marginLeft: 30,
       marginRight: 30,
     },
