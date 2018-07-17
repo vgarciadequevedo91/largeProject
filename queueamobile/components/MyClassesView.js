@@ -4,7 +4,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import TextField from './TextField';
 import QAButton from './QAButton';
 import Subhead from './Subhead';
-import ClassModel from '../ClassModel';
+import ClassModel from '../models/ClassModel';
 
 export default class MyClassesView extends Component {
   static navigationOptions = {
