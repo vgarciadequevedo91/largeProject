@@ -12,13 +12,13 @@ export default class ClassDetailView extends Component {
             />
         ),
     });
-    
+
     render() {
-      const { name, id } = this.props.navigation.state.params
+      const { name, id, professor, sessionName, sessionID } = this.props.navigation.state.params
 
       return (
         <Text>
-            {id}
+            {sessionName}
         </Text>
       );
     }

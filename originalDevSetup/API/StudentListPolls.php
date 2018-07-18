@@ -47,60 +47,61 @@
       // We didn't retrieve any rows so we return with no results found.
       if ($numRows == 0) {
         returnWithError("No sessions found.");
-      }
-    }
-    $stmt->close();
+      } else {
+				$stmt->close();
 
-    // Get the name of the class associated with this session
-    $stmt = $conn->stmt_init();
-    if (!$stmt->prepare("Select Professor, Name from Class where ClassID = ?")) {
-      $error_occurred = true;
-      returnWithError($conn->errno());
-    } else {
-      $stmt->bind_param("i", $classID);
-      $stmt->execute();
-      $stmt->store_result();
-      $stmt->bind_result($prof, $name);
-      while($stmt->fetch()) {
-        $classProf = $prof;
-        $className = $name;
-      }
-    }
-    $stmt->close();
+		    // Get the name of the class associated with this session
+		    $stmt = $conn->stmt_init();
+		    if (!$stmt->prepare("Select Professor, Name from Class where ClassID = ?")) {
+		      $error_occurred = true;
+		      returnWithError($conn->errno());
+		    } else {
+		      $stmt->bind_param("i", $classID);
+		      $stmt->execute();
+		      $stmt->store_result();
+		      $stmt->bind_result($prof, $name);
+		      while($stmt->fetch()) {
+		        $classProf = $prof;
+		        $className = $name;
+		      }
+		    }
+		    $stmt->close();
 
-    // Finally get the professor polls for this session
-		$stmt = $conn->stmt_init();
-		if(!$stmt->prepare("Select PollID, QuestionText, NumAnswers,
-      Answer1, Answer2, Answer3, Answer4, Answer5 from Poll where SessionID = ?
-      and IsArchived = false")) {
-			$error_occurred = true;
-			returnWithError($conn->errno());
-		}
-		else {
-			$stmt->bind_param("i", $sessionID);
-			$stmt->execute();
-			$stmt->store_result();
-			$stmt->bind_result($id, $text, $numAns, $ans1, $ans2, $ans3, $ans4, $ans5);
+		    // Finally get the professor polls for this session
+				$stmt = $conn->stmt_init();
+				if(!$stmt->prepare("Select PollID, QuestionText, NumAnswers,
+		      Answer1, Answer2, Answer3, Answer4, Answer5 from Poll where SessionID = ?
+		      and IsArchived = false")) {
+					$error_occurred = true;
+					returnWithError($conn->errno());
+				}
+				else {
+					$stmt->bind_param("i", $sessionID);
+					$stmt->execute();
+					$stmt->store_result();
+					$stmt->bind_result($id, $text, $numAns, $ans1, $ans2, $ans3, $ans4, $ans5);
 
-      $count = 0;
-			while ($stmt->fetch()) {
-        if ($count > 0) {
-          $pollList = $pollList . ',';
-        }
+		      $count = 0;
+					while ($stmt->fetch()) {
+		        if ($count > 0) {
+		          $pollList = $pollList . ',';
+		        }
 
-        $pollList = $pollList . '{"pollID":"' . $id . '",';
-        $pollList = $pollList . '"questionText":"' . $text . '",';
-        $pollList = $pollList . '"numAnswers":"' . $numAns . '",';
-        $pollList = $pollList . '"answers":["' . $ans1 . '","' . $ans2 . '","' . $ans3 .
-                '","' . $ans4 . '","' . $ans5 . '"]}';
+		        $pollList = $pollList . '{"pollID":"' . $id . '",';
+		        $pollList = $pollList . '"questionText":"' . $text . '",';
+		        $pollList = $pollList . '"numAnswers":"' . $numAns . '",';
+		        $pollList = $pollList . '"answers":["' . $ans1 . '","' . $ans2 . '","' . $ans3 .
+		                '","' . $ans4 . '","' . $ans5 . '"]}';
 
-        $count = $count + 1;
+		        $count = $count + 1;
+					}
+		      $pollList = $pollList . ']';
+					returnWithInfo($sessionID, $classID, $sessionName, $className, $classProf,
+		      $pollList);
+					$stmt->close();
+				}
 			}
-      $pollList = $pollList . ']';
-			returnWithInfo($sessionID, $classID, $sessionName, $className, $classProf,
-      $pollList);
-			$stmt->close();
-		}
+    }
 
 		$conn->close();
 	}
@@ -136,7 +137,7 @@
                             $classProf, $polls) {
 		$retValue = '{"sessionID":"' . $sessionID . '", "classID":"' . $classID .
       '", "className":"' . $className . '", "classProf":"' . $classProf . '",
-      "questionList":"' . $polls . '", "error":""}';
+      "questionList":' . $polls . ', "error":""}';
 		sendAsJson( $retValue );
 	}
 ?>
