@@ -10,8 +10,8 @@
 
   <!-- Bootstrap -->
   <!--currently shifts navbar to center -->
-  <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
--->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
 
   <link rel="stylesheet" href="css/body.css" type="text/css">
   <link rel="stylesheet" href="css/navbar.css" type="text/css">
@@ -33,26 +33,27 @@
 <body>
 
 
-  <div class = "navbar">
-    <div class = "container">
-          <div class = "logo_div">
-            <a href="index.html"><img src = "images/logo.png" alt = "" class = "logo"></a>
-          </div>
-
-          <div class = "navbar_links">
-            <ul class = "menu">
-              <!-- SHOULD BE REMOVED. ONLY KEPT TO EASILY NAVIGATE TO MAIN PAGE -->
-                <li><a href="main.html">Home</a></li>
-            </ul>
-          </div>
+  <nav class = "navbar fixed-top navbar-expand-sm navbar-default">
+    <a class="navbar-brand" href="index.html">
+      <a href = "index.html"><img style="max-height: 35px;" src="images/logo.svg"></a>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="main.html">Home</a> <!--will delete this on login/reg page-->
+        </li>
+      </ul>
     </div>
-  </div>
+  </nav>
 
 
   <div class = "register_container">
 
       <div class = "loginimg">
-        <img src = "images/medium_q.png" alt = "" class = "logo">
+        <img style="max-height: 200px;" src="images/medium_q.png">
       </div>
 
 <!-- THE FOLLOWING 'LOGIN' DIV IS TAKEN FROM PROJECT1 LOGIN -->
@@ -86,6 +87,9 @@
 
   </div>
 
+  <div id = "copyright">
+    &copy; 2018 Queue + A. All Rights Reserved.
+  </div>
 
 </body>
 

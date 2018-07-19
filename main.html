@@ -10,8 +10,8 @@
 
   <!-- Bootstrap -->
   <!--currently shifts navbar to center -->
-  <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
--->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
 
   <link rel="stylesheet" href="css/body.css" type="text/css">
   <link rel="stylesheet" href="css/navbar.css" type="text/css">
@@ -33,21 +33,27 @@
 <body>
 
 
-  <div class = "navbar">
-    <div class = "container">
-          <div class = "logo_div">
-            <img src = "images/logo.png" alt = "" class = "logo">
-          </div>
-
-          <div class = "navbar_links">
-            <ul class = "menu">
-                <li><a href="main.html">Home</a></li>
-                <li><a href="settings.html">Settings</a></li>
-                <li><a href="index.html">Sign Out</a></li>
-            </ul>
-          </div>
+  <nav class = "navbar fixed-top navbar-expand-sm navbar-default ">
+    <a class="navbar-brand" >
+      <img style="max-height: 35px;" src="images/logo.svg">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="main.html">Home</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="settings.html">Settings</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Sign Out</a>
+        </li>
+      </ul>
     </div>
-  </div>
+  </nav>
 
 
   <!-- Sidebar -->
@@ -57,30 +63,34 @@
 
 
           <ul class="list-unstyled components">
-              <p>This is a title!!</p>
+
+              <h6>My Classes</h4>
+              <h4>COP 4331</h4>
+              <h5>id: 549831 </h5>
               <li>
-                  <a href="#">Sidebar</a>
+                  <a href="#">My Cool Session</a>
               </li>
               <li>
-                  <a href="#">Classes</a>
+                  <a href="#">Design Patterns</a>
               </li>
               <li>
-                  <a href="#">Sessions</a>
+                  <a href="#">Something Else</a>
               </li>
               <li>
-                  <a href="#">Will Fix!</a>
+                  <a href="#">View All</a>
               </li>
           </ul>
 
-          <div id = "copyright">
-            &copy 2018 Queue and A. All Rights Reserved.
-          </div>
+
 
       </nav>
 
   </div>
 
 
+  <div id = "copyright">
+    &copy; 2018 Queue + A. All Rights Reserved.
+  </div>
 
 </body>
 
