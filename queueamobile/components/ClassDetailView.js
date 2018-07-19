@@ -14,6 +14,22 @@ export default class ClassDetailView extends Component {
     });
 
     render() {
+      formatDate = (date) => {
+        var dateString = date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear()
+
+        var hours = date.getHours()
+        hours = hours % 12
+        hours = hours ? hours : 12
+
+        var mins = date.getMinutes()
+        mins = mins < 10 ? '0' + mins : mins
+        
+        var ampm = hours >= 12 ? 'pm' : 'am'
+        var timeString = hours + ':' + mins + ampm
+
+        return dateString + ', ' + timeString
+      }
+
       const { name, id, professor, sessions } = this.props.navigation.state.params
 
       return (
@@ -28,7 +44,7 @@ export default class ClassDetailView extends Component {
                 renderItem={({item}) => 
                     <View style={styles.cell}>
                         <Text style={styles.sessionName}>{item.name}</Text>
-                        <Text style={styles.sessionDate}>{item.id}</Text>
+                        <Text style={styles.sessionDate}>{formatDate(item.createdAt)}</Text>
                         <View style={styles.separator}></View>
                     </View>
                 }
