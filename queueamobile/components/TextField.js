@@ -6,6 +6,7 @@ export default class TextField extends Component {
     return (
       <TextInput
         style={styles.textField}
+        underlineColorAndroid='rgba(0,0,0,0)'
         onChangeText={(text) => this.setState({text})}
         text={this.props.text}
         placeholder={this.props.placeholder}
