@@ -56,22 +56,22 @@
         <img style="max-height: 200px;" src="images/medium_q.png">
       </div>
 
-<!-- THE FOLLOWING 'LOGIN' DIV IS TAKEN FROM PROJECT1 LOGIN -->
+
       <div class = "login">
             <br/><h3>Welcome Back Professor</h3>
             <br/>
             <!-- Username -->
-              <input type = "text" placeholder = "Enter your username" id = "loginUser" required>
-            <br/>
-            <!-- Password -->
-              <input type = "password" placeholder = "Enter your password" id = "loginPassword" required>
-            </br>
-          <div class = "libutton">
-              <br/><button type = "button" id = "loginButton" class = "buttons" onclick="doLogin();">
-              Log In</button><br/>
-          </div>
+            <form onsubmit = "return login()">
+                  <input type = "email" class = "input_elements" placeholder = "Email Address" required>
 
-            <!-- <span id = "loginResult"></span> -->
+                <!-- Password -->
+                  <input type = "password" class = "input_elements" placeholder = "Password" required>
+            
+                <input type = "submit" value = "Login" class = "libutton" onclick = "login()">
+
+            </form>
+
+
 
             <div class = "switch_loginreg">
                 <li>
@@ -83,6 +83,32 @@
 
 
   </div>
+
+
+  <!-- Error modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Error</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="edit-session-form-container">
+          Error message here
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-modal-black" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
   <div id = "copyright">
