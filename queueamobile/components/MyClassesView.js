@@ -24,7 +24,7 @@ export default class MyClassesView extends Component {
       });
 
       // Pull session information
-      fetch('http://localhost:8000/API/StudentPullClassInfo.php', {
+      fetch('http://group5.gearhostpreview.com/API/StudentPullClassInfo.php', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
