@@ -7,12 +7,16 @@
 
 }
 
+
 /* sidebar */
 .wrapper {
+  padding-left: 0;
     display: flex;
     width: 100%;
     align-items: stretch;
 }
+
+
 
 
 p {
@@ -25,19 +29,35 @@ p {
     padding: 15px;
 }
 
-.sidebar-header {
-  padding-top: 15px;
+
+
+h6 {
+  padding-top:5px;
+}
+
+h5 {
+  color: #b5b5b5;
   text-align: center;
+  font-size: 17px;
+
+
+}
+
+h4 {
+  color: ##13B17F;
 }
 
 #sidebar {
+    font-family: 'Poppins', sans-serif;
     position: absolute;
     background: #fff;
     min-width: 250px;
     max-width: 250px;
-    min-height: 92.5vh; /*any larger and page will overflow*/
+    min-height: 87vh; /*any larger and page will overflow*/
+    top: 63;
     left: 0;
-    bottom 0;
+    bottom: 0;
+
 }
 
 #sidebar ul li {
@@ -66,8 +86,10 @@ p {
     bottom: 0;
     font-family: 'Poppins', sans-serif;
     font-size: 0.75em;
-    color: #767676;
-    max-width: 250px;
+    color: #fff;
+    width: 100%;
     padding: 8px;
     border-top: 1px solid #E0E0E0;
+    background: #13B17F;
+    text-align: center;
 }
