@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, Button, StyleSheet, View, SectionList } from 'react-native';
+import { AppRegistry, Text, Button, StyleSheet, View, SectionList, TouchableHighlight } from 'react-native';
+import SessionModel from '../models/SessionModel';
 
 export default class ClassDetailView extends Component {
     static navigationOptions = ({ navigation }) => ({
@@ -11,6 +12,7 @@ export default class ClassDetailView extends Component {
             color="#16966A"
             />
         ),
+        headerBackTitle: 'Sessions'
     });
 
     render() {
@@ -30,6 +32,10 @@ export default class ClassDetailView extends Component {
         return dateString + ', ' + timeString
       }
 
+      openSession = (session) => {
+        this.props.navigation.navigate('SessionDetailView', session)
+      }
+
       const { name, id, professor, sessions } = this.props.navigation.state.params
 
       return (
@@ -42,11 +48,13 @@ export default class ClassDetailView extends Component {
                     title: 'Active Sessions', data: sessions
                 }]}
                 renderItem={({item}) => 
-                    <View style={styles.cell}>
-                        <Text style={styles.sessionName}>{item.name}</Text>
-                        <Text style={styles.sessionDate}>{formatDate(item.createdAt)}</Text>
-                        <View style={styles.separator}></View>
-                    </View>
+                    <TouchableHighlight underlayColor='rgba(0,0,0,0.1)' onPress={() => openSession(item)}>
+                        <View>
+                            <Text style={styles.sessionName}>{item.name}</Text>
+                            <Text style={styles.sessionDate}>{formatDate(item.createdAt)}</Text>
+                            <View style={styles.separator}></View>
+                        </View>
+                    </TouchableHighlight>
                 }
                 renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
                 keyExtractor={(item, index) => index}
