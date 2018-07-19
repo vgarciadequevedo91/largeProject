@@ -54,7 +54,7 @@ export default class MyClassesView extends Component {
             Join a Class
           </Text>
           <Subhead text='Class ID'/>
-          <TextField ref='idInput' placeholder='Enter the ID given by your instructor' keyboardType='numeric' />
+          <TextField ref='idInput' placeholder='Enter the ID given by your instructor' keyboardType='numbers-and-punctuation' autoCapitalize='characters' />
           <QAButton
               onPress={() => joinClass(this.refs.idInput.state.text)}
               title='Join'

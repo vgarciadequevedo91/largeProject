@@ -10,6 +10,7 @@ export default class TextField extends Component {
         text={this.props.text}
         placeholder={this.props.placeholder}
         keyboardType={this.props.keyboardType}
+        autoCapitalize={this.props.autoCapitalize}
       />
     );
   }
