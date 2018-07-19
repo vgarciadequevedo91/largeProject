@@ -20,23 +20,26 @@ export default class MyClassesView extends Component {
 
   render() {
     joinClass = (id) => {
-      
+      // Clear error text
+      this.setState(previousText => {
+        return {errorText: ''};
+      });
+
       // Pull session information
-      fetch('http://localhost:8000/API/StudentListPolls.php', {
+      fetch('http://group5.gearhostpreview.com/API/StudentPullClassInfo.php', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          sessionID: id,
+          classID: id,
         }),
       }).then((response) => response.json()).then((responseJson) => {
         // Check response
         if (responseJson.error === '' || responseJson.error === null) {
           let myClass = new ClassModel(responseJson.className,
-            responseJson.classID, responseJson.classProf,
-            responseJson.sessionName, responseJson.sessionID)
+            responseJson.classID, responseJson.classProf, responseJson.sessions)
           this.props.navigation.navigate('ClassDetailView', myClass)
         } else {
           this.setState(previousText => {

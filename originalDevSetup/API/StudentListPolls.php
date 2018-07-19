@@ -1,6 +1,5 @@
 <?php
-  // Receives the session code and returns a list of unarchived questions for
-  // that session.
+  // Receives the session code and returns a list of questions for that session.
   // Endpoint for the student app.
 
 	$inData = getRequestInfo();
@@ -12,10 +11,6 @@
 	$dbName = "group5";
 
   $sessionID = trimAndSanitize($inData["sessionID"]);
-  $classID = 0;
-  $sessionName = "";
-  $classProf = "";
-  $className = "";
   $pollList = '[';
 
 	// Connect to database
@@ -26,22 +21,19 @@
 	}
 	else {
 
-    // First, verify that the session exists and get the associated session name
-    // and class ID to get the class name.
+    // First, verify that the session exists.
     $stmt = $conn->stmt_init();
-    if (!$stmt->prepare("Select ClassID, Name from Session where SessionID = ? and Archived = 0")) {
+    if (!$stmt->prepare("Select Name from Session where SessionID = ?")) {
       $error_occurred = true;
       returnWithError($conn->errno());
     } else {
       $stmt->bind_param("i", $sessionID);
       $stmt->execute();
       $stmt->store_result();
-      $stmt->bind_result($id, $name);
+      $stmt->bind_result($name);
       $numRows = 0;
       while ($stmt->fetch()) {
         $numRows = $numRows + 1;
-        $classID = $id;
-        $sessionName = $name;
       }
 
       // We didn't retrieve any rows so we return with no results found.
@@ -50,28 +42,11 @@
       } else {
 				$stmt->close();
 
-		    // Get the name of the class associated with this session
-		    $stmt = $conn->stmt_init();
-		    if (!$stmt->prepare("Select Professor, Name from Class where ClassID = ?")) {
-		      $error_occurred = true;
-		      returnWithError($conn->errno());
-		    } else {
-		      $stmt->bind_param("i", $classID);
-		      $stmt->execute();
-		      $stmt->store_result();
-		      $stmt->bind_result($prof, $name);
-		      while($stmt->fetch()) {
-		        $classProf = $prof;
-		        $className = $name;
-		      }
-		    }
-		    $stmt->close();
-
 		    // Finally get the professor polls for this session
 				$stmt = $conn->stmt_init();
 				if(!$stmt->prepare("Select PollID, QuestionText, NumAnswers,
-		      Answer1, Answer2, Answer3, Answer4, Answer5 from Poll where SessionID = ?
-		      and IsArchived = false")) {
+		      Answer1, Answer2, Answer3, Answer4, Answer5, IsArchived from Poll
+					where SessionID = ?")) {
 					$error_occurred = true;
 					returnWithError($conn->errno());
 				}
@@ -79,7 +54,8 @@
 					$stmt->bind_param("i", $sessionID);
 					$stmt->execute();
 					$stmt->store_result();
-					$stmt->bind_result($id, $text, $numAns, $ans1, $ans2, $ans3, $ans4, $ans5);
+					$stmt->bind_result($id, $text, $numAns, $ans1, $ans2, $ans3, $ans4,
+					$ans5, $isArchived);
 
 		      $count = 0;
 					while ($stmt->fetch()) {
@@ -90,14 +66,14 @@
 		        $pollList = $pollList . '{"pollID":"' . $id . '",';
 		        $pollList = $pollList . '"questionText":"' . $text . '",';
 		        $pollList = $pollList . '"numAnswers":"' . $numAns . '",';
+						$pollList = $pollList . '"isArchived":"' . $isArchived . '",';
 		        $pollList = $pollList . '"answers":["' . $ans1 . '","' . $ans2 . '","' . $ans3 .
 		                '","' . $ans4 . '","' . $ans5 . '"]}';
 
 		        $count = $count + 1;
 					}
 		      $pollList = $pollList . ']';
-					returnWithInfo($sessionID, $classID, $sessionName, $className, $classProf,
-		      $pollList);
+					returnWithInfo($sessionID, $pollList);
 					$stmt->close();
 				}
 			}
@@ -133,11 +109,9 @@
 
   // Return and send the sessionID, classID, session name, class name,
   // professor name, and list of poll questions
-	function returnWithInfo( $sessionID, $classID, $sessionName, $className,
-                            $classProf, $polls) {
-		$retValue = '{"sessionID":"' . $sessionID . '", "classID":"' . $classID .
-      '", "className":"' . $className . '", "classProf":"' . $classProf . '",
-      "questionList":' . $polls . ', "error":""}';
+	function returnWithInfo( $sessionID, $polls) {
+		$retValue = '{"sessionID":"' . $sessionID . '", "questionList":' .
+			$polls . ', "error":""}';
 		sendAsJson( $retValue );
 	}
 ?>
