@@ -1,10 +1,9 @@
 
 export default class ClassModel {
-    constructor(name, id, sessionName, professor, sessionID) {
+    constructor(name, id, professor, sessions) {
         this.name = name;
         this.id = id;
         this.professor = professor;
-        this.sessionName = sessionName;
-        this.sessionID = sessionID;
+        this.sessions = sessions
     }
 }

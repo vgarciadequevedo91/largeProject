@@ -5,6 +5,8 @@ import TextField from './TextField';
 import QAButton from './QAButton';
 import Subhead from './Subhead';
 import ClassModel from '../models/ClassModel';
+import SessionModel from '../models/SessionModel';
+import SurveyModel from '../models/SurveyModel';
 
 export default class MyClassesView extends Component {
   static navigationOptions = {
@@ -54,7 +56,12 @@ export default class MyClassesView extends Component {
             Join a Class
           </Text>
           <Subhead text='Class ID'/>
-          <TextField ref='idInput' placeholder='Enter the ID given by your instructor' keyboardType='numbers-and-punctuation' autoCapitalize='characters' />
+          <TextField 
+            ref='idInput' 
+            placeholder='Enter the ID given by your instructor' 
+            keyboardType='numbers-and-punctuation' 
+            autoCapitalize='characters'
+          />
           <QAButton
               onPress={() => joinClass(this.refs.idInput.state.text)}
               title='Join'
