@@ -59,8 +59,8 @@
 
 		    // Pull the list of sessions for this class
 				$stmt = $conn->stmt_init();
-				if(!$stmt->prepare("Select SessionID, Name, DateCreated, DateArchived,
-		      Archived from Session where ClassID = ?")) {
+				if(!$stmt->prepare("Select SessionID, Name, DateCreated from Session
+								where ClassID = ? and Archived = 0")) {
 					$error_occurred = true;
 					returnWithError($conn->errno());
 				}
@@ -68,8 +68,7 @@
 					$stmt->bind_param("i", $classID);
 					$stmt->execute();
 					$stmt->store_result();
-					$stmt->bind_result($sessionID, $sessionName, $dateCreated,
-                              $dateArchived, $archived);
+					$stmt->bind_result($sessionID, $sessionName, $dateCreated);
 
 		      $count = 0;
 					while ($stmt->fetch()) {
@@ -79,9 +78,7 @@
 
 		        $sessionList = $sessionList . '{"sessionID":"' . $sessionID . '",';
 		        $sessionList = $sessionList . '"sessionName":"' . $sessionName . '",';
-		        $sessionList = $sessionList . '"dateCreated":"' . $dateCreated . '",';
-						$sessionList = $sessionList . '"dateArchived":"' . $dateArchived . '",';
-            $sessionList = $sessionList . '"archived":"' . $archived . '"}';
+		        $sessionList = $sessionList . '"dateCreated":"' . $dateCreated . '"}';
 
 		        $count = $count + 1;
 					}

@@ -25,8 +25,8 @@ export default class MyClassesView extends Component {
         return {errorText: ''};
       });
 
-      // Pull session information
-      fetch('http://group5.gearhostpreview.com/API/StudentPullClassInfo.php', {
+      // Pull class information
+      fetch('http://localhost:8000/API/StudentPullClassInfo.php', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -39,7 +39,7 @@ export default class MyClassesView extends Component {
         // Check response
         if (responseJson.error === '' || responseJson.error === null) {
           let myClass = new ClassModel(responseJson.className,
-            responseJson.classID, responseJson.classProf, responseJson.sessions)
+            responseJson.classID, responseJson.professor, responseJson.sessionList)
           this.props.navigation.navigate('ClassDetailView', myClass)
         } else {
           this.setState(previousText => {
@@ -59,10 +59,10 @@ export default class MyClassesView extends Component {
             Join a Class
           </Text>
           <Subhead text='Class ID'/>
-          <TextField 
-            ref='idInput' 
-            placeholder='Enter the ID given by your instructor' 
-            keyboardType='numbers-and-punctuation' 
+          <TextField
+            ref='idInput'
+            placeholder='Enter the ID given by your instructor'
+            keyboardType='numbers-and-punctuation'
             autoCapitalize='characters'
           />
           <QAButton
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         margin: 40,
         color: 'black'
     },
-    headerTextError: {
+    errorText: {
         fontSize: 15,
         fontWeight: 'bold',
         textAlign: 'center',

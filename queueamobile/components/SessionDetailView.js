@@ -20,10 +20,10 @@ export default class ClassDetailView extends Component {
                 {title: 'Ask a Question', data: []},
                 {title: 'Surveys', data: surveys}
             ]}
-            renderItem={({item}) => 
+            renderItem={({item}) =>
                 <View style={styles.cell}>
-                    <Text style={styles.sessionName}>{item.name}</Text>
-                    <Text style={styles.sessionResponses}>{item.numResponses + " responses"}</Text>
+                    <Text style={styles.sessionName}>{item.questionText}</Text>
+                    <Text style={styles.sessionResponses}>{item.numAnswers + " responses"}</Text>
                     <View style={styles.separator}></View>
                 </View>
             }
