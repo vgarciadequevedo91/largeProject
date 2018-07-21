@@ -1,5 +1,17 @@
 <html>
 
+<!-- NOTES FOR JS -->
+<!-- FUNCTIONS USED:
+logout()
+  -function name taken directly from prev group
+  -assuming function will close any open sessions? + logout
+  -made it so clicking button performs logout() as well as redirects to index.html
+      -feel free to change
+  -path (past group): scripts/main.js
+
+
+  -don't forget to include scripts under 'scripts' section in this html doc -->
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +29,9 @@
   <link rel="stylesheet" href="css/navbar.css" type="text/css">
   <link rel="stylesheet" href="css/sidebar.css" type="text/css">
 
+
+  <!-- Scripts -->
+   <script src="http://cop4331-2.com/scripts/main.js"></script>
 
 <!-- favicon files -->
   <link rel="apple-touch-icon" sizes="144x144" href="favicon_files/apple-touch-icon.png">
@@ -49,7 +64,7 @@
           <a class="nav-link" href="settings.html">Settings</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">Sign Out</a>
+          <a class="nav-link" href="index.html" onclick = "logout()">Sign Out</a>
         </li>
       </ul>
     </div>
