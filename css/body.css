@@ -17,6 +17,22 @@ body {
 
 /* center page content */
 
+#carouselExampleIndicators {
+  width: 77%;
+  margin-left: 250px;
+  border-radius: 30px; /*rounded corners */
+  box-shadow: 10px 10px 10px #DEDEDE;
+}
+
+
+
+.maincontent {
+  margin: auto;
+  margin-top: 100px;
+  width: 70%;
+  height: 70%;
+}
+
 .content {
   margin: auto;
   margin-top: 100px;
@@ -26,6 +42,14 @@ body {
   border-radius: 30px; /*rounded corners */
   box-shadow: 5px 5px 5px #DEDEDE;
 }
+
+.classTitle {
+  padding-top: 30px;
+  padding-left: 40%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 30px;
+}
+
 
 .input_elements {
   margin-bottom: 3%;
@@ -120,7 +144,7 @@ button {
 }
 
 button:hover {
-    background-color: #A8A8A8;
+    background-color: none;
 }
 
 button:active {
