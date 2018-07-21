@@ -10,7 +10,7 @@
 body {
   /* background-image: url("../images/design-tools.png");
   background-repeat: repeat; */
-  overflow: scroll;
+  overflow: auto;
   background-color: #f4f4f4;
 
 }
