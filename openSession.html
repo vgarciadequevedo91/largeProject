@@ -15,7 +15,15 @@ Used all functions called in 'session.html' page used by PREVIOUS group.
       <script src="http://cop4331-2.com/scripts/session.js"></script>
 	    <script src="http://cop4331-2.com/scripts/main.js"></script>
 
-  -don't forget to include scripts under 'scripts' section in this html doc -->
+  -don't forget to include scripts under 'scripts' section in this html doc
+
+IMPORTANT!!
+lIKE THE PREV GROUP HAD A CLASS-LIST-CONTAINER, WE NEED A SESSION-LIST-CONTAINER
+AND A WAY TO SWITCH BETWEEN SESSIONS.
+A LIST OF THE LAST 3 SESSIONS WILL BE NEEDED AS WELL AS A WAY TO SWITCH ON CLICK (DONE IN SCRIPT CODE)
+
+
+-->
 
 <head>
   <meta charset="utf-8">
@@ -69,7 +77,7 @@ Used all functions called in 'session.html' page used by PREVIOUS group.
           <a class="nav-link" href="settings.html">Settings</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="index.html" onclick = "logout()">Sign Out</a>
+          <a class="nav-link" onclick = "logout()">Sign Out</a>
         </li>
       </ul>
     </div>
@@ -77,40 +85,28 @@ Used all functions called in 'session.html' page used by PREVIOUS group.
 
 
   <!-- Sidebar -->
-  <div class="wrapper">
+  <ul class="list-unstyled components">
+      <div id="mySidenav" class="sidenav">
+        <a href = "main.html">Back to Classes</a>
+        <h4><p class = "class-title"></p></h4>
+        <h5><p class = "class-id"></p></h5>
+        <div class="session-list-container"> <!-- WILL SHOW 'YOU HAVEN'T CREATED ANY SESSIONS' IF EMPTY. ELSE: SHOWS SESSION LIST. -->
+            <!-- NEED TO MAKE IT SO SESSION-LIST-CONTAINER ONLY SHOWS 3 MOST RECENT SESSIONS -->
+         </div>
+      <li>
+          <a href="#">View All</a>
+      </li>
+      <li>
+          <a href="#" data-toggle="modal" data-target="#myModal">New Session</a>
 
-      <nav id="sidebar">
+      </li>
 
-
-          <ul class="list-unstyled components">
-
-              <a href = "main.html"><h6>Back to Classes</h4></a>
-              <h4><p class = "class-title"></p></h4>
-              <h5><p class = "class-id"></p></h5>
-              <li>
-                  <a href="#">Session 1</a>
-              </li>
-              <li>
-                  <a href="#">Session 2</a>
-              </li>
-              <li>
-                  <a href="#">Session 3</a>
-              </li>
-              <li>
-                  <a href="#">View All</a>
-              </li>
-              <li>
-                  <a href="openSession.html">Add New Session</a>
-              </li>
-          </ul>
+      </div>
+  </ul>
 
 
-
-      </nav>
-
-  </div>
-
-  <div class = "content">
+<div id="main">
+  <div class="container">
 
 
 
@@ -546,6 +542,8 @@ Used all functions called in 'session.html' page used by PREVIOUS group.
     		</div>
     	</div>
 
+
+    </div>
   </div>
 
 

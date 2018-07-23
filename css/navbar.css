@@ -7,17 +7,23 @@
 
 }
 
+
 .navbar-default {
   background-color: #fff;
 }
 
 .nav-link {
   font-family: 'Poppins', sans-serif;
-  color: black;
+  color: #13B17F;
 
 }
 
+.nav-link:hover {
+  font-family: 'Poppins', sans-serif;
+  color: rgb(102, 214, 179);
+}
+
 #navbarNav .navbar-nav > li > a:hover {
-  background-color: #fff;
+
   text-decoration: none;
 }

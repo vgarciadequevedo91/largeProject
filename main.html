@@ -63,7 +63,7 @@
           <a class="nav-link" href="settings.html">Settings</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="index.html" onclick = "logout()">Sign Out</a>
+          <a class="nav-link" onclick = "logout()">Sign Out</a>
         </li>
       </ul>
     </div>
@@ -71,74 +71,152 @@
 
 
   <!-- Sidebar -->
-  <div class="wrapper">
+  <ul class="list-unstyled components">
 
-      <nav id="sidebar">
-
-
-          <ul class="list-unstyled components">
+      <div id="mySidenav" class="sidenav">
 
               <h6>My Classes</h4>
+                <div class="class-list-container"> <!-- WILL SHOW 'YOU HAVEN'T CREATED ANY CLASSES' IF EMPTY. ELSE: SHOWS CLASS LIST. -->
+                    <!-- NEED TO MAKE IT SO CLASS-LIST-CONTAINER ONLY SHOWS 3 MOST RECENT CLASSES -->
+ 	               </div>
               <li>
-                  <a href="session.html">Class 1</a>
+                 <a href="#">View All</a> <!-- WILL REDIRECT TO PAGE TO SHOW ALL CLASSES -->
               </li>
               <li>
-                  <a href="session.html">Class 2</a>
+                  <a href="#" data-toggle="modal" data-target="#newClassModal">Add New Class</a>
               </li>
-              <li>
-                  <a href="session.html">Class 3</a>
-              </li>
-              <li>
-                  <a href="#">View All</a>
-              </li>
-              <li>
-                  <a href="addClass.html">Add New Class</a>
-              </li>
-          </ul>
+      </div>
+  </ul>
+
+
+<div id="main">
+  <div class = "container">
 
 
 
-      </nav>
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100" src="images/newage.jpg" alt="First slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="images/streamline.jpg" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="images/connect.jpg" alt="Third slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="images/questions.jpg" alt="Third slide">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
 
   </div>
-
-<div class = "maincontent">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100" src="images/newage.jpg" alt="First slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="images/streamline.jpg" alt="Second slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="images/connect.jpg" alt="Third slide">
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" src="images/questions.jpg" alt="Third slide">
-          </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
 </div>
 
 
-  <div id = "copyright">
-    &copy; 2018 Queue + A. All Rights Reserved.
-  </div>
+  <!-- New class modal -->
+		<div class="modal fade" id="newClassModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<h5 class="modal-title">Create a new class</h5>
+						<button type="button" class="close" data-dismiss="modal">
+						  <span>&times;</span>
+						</button>
+					</div>
+
+					<div class="modal-body">
+						<div class="add-class-form-container">
+							<input id="add-class-input" type="text" placeholder="Class Name">
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-modal-black" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-modal-green" data-dismiss="modal" onclick="addClass()">Create</button> <!-- NEEDS TO REDIRECT TO OPEN CLASS PAGE -->
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		  <!-- Delete class modal -->
+		<div class="modal fade" id="deleteClassModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<h5 class="modal-title">Are you sure?</h5>
+						<button type="button" class="close" data-dismiss="modal" onclick="setDeleteTarget(-1, '')">
+						  <span>&times;</span>
+						</button>
+					</div>
+
+					<div class="modal-body">
+						<div class="edit-class-form-container">
+							Are you sure you want to delete "Class name"? You won't ever be able to access it again.
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-modal-black" data-dismiss="modal" onclick="setDeleteTarget(-1, '')">No</button>
+						<button type="button" class="btn btn-modal-green" data-dismiss="modal" onclick="deleteClass()">Yes</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	  	<!-- Error modal -->
+		<div class="modal fade" id="errorModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+
+					<div class="modal-header">
+						<h5 class="modal-title">Error</h5>
+						<button type="button" class="close" data-dismiss="modal">
+						  <span>&times;</span>
+						</button>
+					</div>
+
+					<div class="modal-body">
+						<div class="edit-session-form-container" id="errorText">
+							Error message here
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-modal-black" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+    <div id = "copyright">
+      &copy; 2018 Queue + A. All Rights Reserved.
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 
 
   <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet"/> -->
