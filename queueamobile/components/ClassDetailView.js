@@ -80,8 +80,8 @@ export default class ClassDetailView extends Component {
                 renderItem={({item}) =>
                     <TouchableHighlight underlayColor='rgba(0,0,0,0.1)' onPress={() => openSession(item)}>
                         <View>
-                            <Text style={styles.sessionName}>{item.sessionName}</Text>
-                            <Text style={styles.sessionDate}>{item.dateCreated}</Text>
+                            <Text style={styles.sessionName}>{item.name}</Text>
+                            <Text style={styles.sessionDate}>{item.createdAt}</Text>
                             <View style={styles.separator}></View>
                         </View>
                     </TouchableHighlight>

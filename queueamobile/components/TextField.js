@@ -20,7 +20,7 @@ export default class TextField extends Component {
 const styles = StyleSheet.create({
   textField: {
     borderWidth: 2,
-    borderColor: Platform.OS === 'ios' ? '#0000004D' : null,
+    borderColor: 'rgba(0,0,0,.3)',
     borderRadius: 4,
     height: 50,
     alignSelf: 'stretch',

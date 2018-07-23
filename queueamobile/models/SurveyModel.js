@@ -1,7 +1,7 @@
 
 export default class SurveyModel {
-    constructor(name, id, answerChoices, numResponses) {
-        this.name = name;
+    constructor(questionText, id, answerChoices, numResponses) {
+        this.questionText = questionText;
         this.id = id;
         this.answerChoices = answerChoices;
         this.numResponses = numResponses;

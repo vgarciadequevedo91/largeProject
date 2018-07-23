@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, StyleSheet, View, SectionList } from 'react-native';
+import { AppRegistry, Text, StyleSheet, View, SectionList, TouchableHighlight } from 'react-native';
 
-export default class ClassDetailView extends Component {
+export default class SessionDetailView extends Component {
     static navigationOptions = ({ navigation }) => ({
         headerTitle: navigation.state.params.name,
         headerTintColor: '#16966A',
         headerTitleStyle: {
             color: 'black',
-        }
+        },
+        headerBackTitle: 'Session'
     });
 
     render() {
       const { name, id, createdAt, surveys } = this.props.navigation.state.params
+
+      openSurvey = (survey) => {
+        this.props.navigation.navigate('SurveyDetailView', survey)
+      }
 
       return (
         <SectionList
@@ -21,11 +26,13 @@ export default class ClassDetailView extends Component {
                 {title: 'Surveys', data: surveys}
             ]}
             renderItem={({item}) =>
-                <View style={styles.cell}>
-                    <Text style={styles.sessionName}>{item.questionText}</Text>
-                    <Text style={styles.sessionResponses}>{item.numAnswers + " responses"}</Text>
-                    <View style={styles.separator}></View>
-                </View>
+                <TouchableHighlight underlayColor='rgba(0,0,0,0.1)' onPress={() => openSurvey(item)}>
+                    <View>
+                        <Text style={styles.questionText}>{item.questionText}</Text>
+                        <Text style={styles.numResponses}>{item.numResponses + " responses"}</Text>
+                        <View style={styles.separator}></View>
+                    </View>
+                </TouchableHighlight>
             }
             renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
             keyExtractor={(item, index) => index}
@@ -47,7 +54,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         backgroundColor: 'white',
     },
-    sessionName: {
+    questionText: {
         paddingLeft: 30,
         paddingRight: 30,
         paddingTop: 20,
@@ -55,7 +62,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: 'bold',
     },
-    sessionResponses: {
+    numResponses: {
         paddingLeft: 30,
         paddingRight: 30,
         paddingBottom: 20,
@@ -69,4 +76,4 @@ const styles = StyleSheet.create({
     }
 });
 
-AppRegistry.registerComponent('ClassDetailView', () => ClassDetailView);
+AppRegistry.registerComponent('SessionDetailView', () => SessionDetailView);
