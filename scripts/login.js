@@ -1,13 +1,12 @@
-//Local Testing 
-//var baseURL = "http://localhost:8000/API";
+var baseURL = "http://localhost:8000/API";
 
 // Login error responses
 var badLogin = "Incorrect username or password";
 
 function login(){
 
-    var email = document.getElementById("login-email").value;
-    var password = document.getElementById("login-password").value;
+	var email = document.getElementsByName("email")[0].value;
+	var password = md5(document.getElementsByName("password")[0].value);
 
 	var payload = '{"email" : "' + email + '", "password" : "' + password + '"}';
 
@@ -28,7 +27,7 @@ function login(){
 
 				document.getElementsByName("email")[0].value = "";
 				document.getElementsByName("password")[0].value = "";
-				window.location.href = "main.html";
+				window.location.href = "myClasses.html";
 			}
 		}
 
@@ -40,14 +39,11 @@ function login(){
 	return false;
 }
 
-
-
 function printError(error){
-
 	if(error == "Could not find account"){
-		//document.getElementsByName("response")[0].innerHTML = badLogin;
+		document.getElementsByName("response")[0].innerHTML = badLogin;
 	}
 	else{
-		//document.getElementsByName("response")[0].innerHTML = error;
+		document.getElementsByName("response")[0].innerHTML = error;
 	}
 }

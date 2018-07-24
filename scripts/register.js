@@ -1,44 +1,45 @@
-//Used for local testing
-//var baseURL = "http://localhost:8000/API"
+var baseURL = "http://localhost:8000/API"
 var userID = 0;
 
+function addProfessor() {
+	var name = document.getElementById("form-name").value;
+	var email = document.getElementById("form-email").value;
 
+	var password = document.getElementById("form-password").value;
+	var passwordConfirm = document.getElementById("form-password-confirm").value;
+	if (password !== passwordConfirm) {
+		document.getElementsByName("response")[0].innerHTML = "Your passwords must match";
+		return;
+	}
 
-    function addProfessor() {
-        var name = document.getElementById("form-name").value;
-        var email = document.getElementById("form-email").value;
-        var password = document.getElementById("form-password").value;
-        var passwordConfirm = document.getElementById("form-password-confirm").value;
-        if (password !== passwordConfirm) {
-            
-            //document.getElementsByName("response")[0].innerHTML = "Your passwords must match";
-            return;
-        }
+	password = md5(password);
+	// replace with appropriate varaible names
+	var payload = '{"name" : "' + name + '", "email" : "' + email + '", "password" : "' + password + '"}';
 
-        //Maybe hash?
-        //password = md5(password);
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", baseURL + "/AddProf.php", false);
+	xhr.setRequestHeader("Content-type", "application/json; charset = UTF-8");
 
-        // replace with appropriate varaible names
-        var payload = '{"name" : "' + name + '", "email" : "' + email + '", "password" : "' + password + '"}';
+	try {
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState === 4){
+				var data = JSON.parse(xhr.responseText);
+				var error = data.error;
 
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", baseURL + "/AddProf.php", false);
-        xhr.setRequestHeader("Content-type", "application/json; charset = UTF-8");
+				if(error !== "") {
+					document.getElementsByName("response")[0].innerHTML = error;
+					return;
+				}
 
-        try {
-            xhr.onreadystatechange = function(){
-                if(xhr.readyState === 4){
-                    var data = JSON.parse(xhr.responseText);
-                    var error = data.error;
+				window.location.href = "Login.html";
+			}
+		}
 
-                    window.location.href = "Login.html";
-                }
-            }
-
-            xhr.send(payload);
-        }
-        catch(error) {
-
-        }
-        return false;
-    }
+		xhr.send(payload);
+	}
+	catch(error) {
+		// include result of creation in HTML
+		document.getElementsByName("response")[0].innerHTML = error.message;
+	}
+	return false;
+}
