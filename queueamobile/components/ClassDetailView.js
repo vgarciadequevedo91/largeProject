@@ -7,7 +7,7 @@ export default class ClassDetailView extends Component {
         headerTitle: navigation.state.params.name,
         headerLeft: (
             <Button
-            onPress={() => navigation.goBack()}
+            onPress={() => navigation.goBack(null)}
             title="Close"
             color="#16966A"
             />
