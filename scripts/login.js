@@ -1,4 +1,5 @@
-var baseURL = "http://localhost:8000/API";
+//Local Testing
+//var baseURL = "http://localhost:3306/API";
 
 // Login error responses
 var badLogin = "Incorrect username or password";
