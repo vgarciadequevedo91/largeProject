@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, TextInput, StyleSheet, View, SectionList, TouchableHighlight } from 'react-native';
+import { AppRegistry, Text, TextInput, StyleSheet, View, SectionList, TouchableHighlight, Alert } from 'react-native';
 import TextField from './TextField';
 import QAButton from './QAButton';
 import SurveyModel from '../models/SurveyModel';
@@ -24,6 +24,7 @@ export default class SessionDetailView extends Component {
 
       askQuestion = (question) => {
         question = this.state.text;
+        console.warn("Called")
 
         // Ignore if there is no question text
         if(question.length > 0) {
@@ -42,23 +43,31 @@ export default class SessionDetailView extends Component {
           }).then((response) => response.json()).then((responseJson) => {
             // Check response
             if (!(responseJson.error === '' || responseJson.error === null)) {
-              // Something here
-            } else {
-              this.setState(previousText => {
-                return {errorText: '' + responseJson.error};
-              });
+              Alert.alert(
+                'Question did not send',
+                '' + responseJson.error,
+                [
+                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+              )
             }
           }).catch((error) => {
-            this.setState(previousText => {
-              return {errorText: '' + error};
-            });
+            Alert.alert(
+              'Question did not send',
+              '' + error,
+              [
+                {text: 'OK', onPress: () => console.log('OK Pressed')},
+              ],
+              { cancelable: false }
+            )
           });
         }
       }
 
       openSurvey = (survey) => {
         let surveyObj = new SurveyModel(survey.questionText, survey.pollID,
-        survey.answers)
+        survey.answers.slice(0, survey.numAnswers))
         this.props.navigation.navigate('SurveyDetailView', surveyObj)
       }
 
@@ -79,7 +88,7 @@ export default class SessionDetailView extends Component {
               autoCapitalize={this.props.autoCapitalize}
             />
             <TouchableHighlight
-            disabled={this.state.text.length > 0}
+            disabled={this.state.text.length == 0}
             onPress={() => askQuestion()} underlayColor='white'>
                 <View style={[styles.button, this.state.text.length > 0 ? styles.green : styles.gray]}>
                     <Text style={styles.title}>Ask</Text>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, StyleSheet, View, SectionList } from 'react-native';
+import { AppRegistry, Text, StyleSheet, View, SectionList, Alert } from 'react-native';
 import QAButton from './QAButton';
 import AnswerButton from './AnswerButton';
 
@@ -12,16 +12,56 @@ export default class SurveyDetailView extends Component {
         }
     });
 
+    constructor(props) {
+      super(props);
+      this.state = { storedAnswer: 0 };
+    }
+
     render() {
       const { questionText, id, answerChoices, numResponses } = this.props.navigation.state.params
 
       selectAnswer = (id) => {
-        // store the answer
+        this.setState(oldAnswer => {
+          return {storedAnswer: id};
+        });
       }
 
-      submitAnswer = (id) => {
-        // submit the answer that was stored
-        // if success, show results
+      submitAnswer = () => {
+        if (this.state.storedAnswer > 0) {
+          // Pull class information
+          fetch('http://localhost:8000/API/StudentAnswerQuestion.php', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              pollID: id,
+              answer: this.state.storedAnswer,
+            }),
+          }).then((response) => response.json()).then((responseJson) => {
+            // Check response
+            if (!(responseJson.error === '' || responseJson.error === null)) {
+              Alert.alert(
+                'Answer did not send',
+                '' + responseJson.error,
+                [
+                  {text: 'OK', onPress: () => console.log('OK Pressed')},
+                ],
+                { cancelable: false }
+              )
+            }
+          }).catch((error) => {
+            Alert.alert(
+              'Answer did not send',
+              '' + error,
+              [
+                {text: 'OK', onPress: () => console.log('OK Pressed')},
+              ],
+              { cancelable: false }
+            )
+          });
+        }
       }
 
       return (
@@ -31,8 +71,8 @@ export default class SurveyDetailView extends Component {
                 renderItem={({item}) =>
                     <View>
                         <AnswerButton
-                            onPress={() => selectAnswer()}
-                            title={item}
+                            onPress={() => selectAnswer(item.index)}
+                            title={item.answer}
                         />
                     </View>
                 }

@@ -68,8 +68,11 @@
 		        $pollList = $pollList . '"questionText":"' . $text . '",';
 		        $pollList = $pollList . '"numAnswers":"' . $numAns . '",';
 						$pollList = $pollList . '"dateCreated":"' . $dateCreated . '",';
-		        $pollList = $pollList . '"answers":["' . $ans1 . '","' . $ans2 . '","' . $ans3 .
-		                '","' . $ans4 . '","' . $ans5 . '"]}';
+		        $pollList = $pollList . '"answers":[{"answer":"' . $ans1 . '", "index":1 },' .
+						'{"answer":"' . $ans2 . '", "index":2 },' .
+						'{"answer":"' . $ans3 . '", "index":3 },' .
+						'{"answer":"' . $ans4 . '", "index":4 },' .
+						'{"answer":"' . $ans5 . '", "index":5 }]}';
 
 		        $count = $count + 1;
 					}
