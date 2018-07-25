@@ -1,7 +1,9 @@
 var deleteTarget, endTarget;
 var invalidSessionError = "Unable to access session.";
 var invalidProfError = "Could not find professor.";
-var baseURL = "http://localhost:8000/API"
+
+//Local Testing
+//var baseURL = "http://localhost:3306/API"
 var classID, className;
 
 function getInfo() {
