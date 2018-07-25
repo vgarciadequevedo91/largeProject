@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { Platform, AppRegistry, TextInput, StyleSheet } from 'react-native';
 
 export default class TextField extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { text: '' };
+  }
+
   render() {
     return (
       <TextInput

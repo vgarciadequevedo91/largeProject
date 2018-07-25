@@ -16,43 +16,44 @@ export default class SessionDetailView extends Component {
 
     constructor(props) {
       super(props);
-      this.state = { errorText: '' };
+      this.state = { text: '' };
     }
 
     render() {
       const { name, id, createdAt, surveys } = this.props.navigation.state.params
 
       askQuestion = (question) => {
-        // Clear error text
-        this.setState(previousText => {
-          return {errorText: ''};
-        });
+        question = this.state.text;
 
-        // Pull class information
-        fetch('http://localhost:8000/API/AskQuestionRN.php', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            sessionID: id,
-            text: question
-          }),
-        }).then((response) => response.json()).then((responseJson) => {
-          // Check response
-          if (!(responseJson.error === '' || responseJson.error === null)) {
-            // Something here
-          } else {
+        // Ignore if there is no question text
+        if(question.length > 0) {
+
+          // Pull class information
+          fetch('http://localhost:8000/API/AskQuestionRN.php', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              sessionID: id,
+              text: question
+            }),
+          }).then((response) => response.json()).then((responseJson) => {
+            // Check response
+            if (!(responseJson.error === '' || responseJson.error === null)) {
+              // Something here
+            } else {
+              this.setState(previousText => {
+                return {errorText: '' + responseJson.error};
+              });
+            }
+          }).catch((error) => {
             this.setState(previousText => {
-              return {errorText: '' + responseJson.error};
+              return {errorText: '' + error};
             });
-          }
-        }).catch((error) => {
-          this.setState(previousText => {
-            return {errorText: '' + error};
           });
-        });
+        }
       }
 
       openSurvey = (survey) => {
@@ -68,17 +69,22 @@ export default class SessionDetailView extends Component {
           Ask a Question
         </Text>
           <View style={styles.form}>
-            <TextField
-              style={styles.questionInput}
-              ref='teacherQuestion'
+            <TextInput
+              style={styles.textField}
+              underlineColorAndroid='rgba(0,0,0,0)'
+              onChangeText={(text) => this.setState({text})}
+              text={this.state.text}
               placeholder='Wondering anything?'
-              keyboardType='numbers-and-punctuation'
-              autoCapitalize='characters'
+              keyboardType={this.props.keyboardType}
+              autoCapitalize={this.props.autoCapitalize}
             />
-            <QAButton
-                onPress={() => askQuestion(this.refs.teacherQuestion.state.text)}
-                title='Ask'
-            />
+            <TouchableHighlight
+            disabled={this.state.text.length > 0}
+            onPress={() => askQuestion()} underlayColor='white'>
+                <View style={[styles.button, this.state.text.length > 0 ? styles.green : styles.gray]}>
+                    <Text style={styles.title}>Ask</Text>
+                </View>
+            </TouchableHighlight>
           </View>
           <SectionList
               style={styles.container}
@@ -159,6 +165,38 @@ const styles = StyleSheet.create({
         margin: 40,
         color: 'red'
     },
+    textField: {
+      borderWidth: 2,
+      borderColor: 'rgba(0,0,0,.3)',
+      borderRadius: 4,
+      height: 50,
+      alignSelf: 'stretch',
+      marginTop: 10,
+      marginBottom: 10,
+      padding: 10,
+      fontSize: 15
+    },
+    button: {
+      margin: 20,
+      minWidth: 100,
+      paddingLeft: 20,
+      paddingRight: 20,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 4,
+      height: 44,
+    },
+    title: {
+      color: 'white',
+      fontSize: 17,
+      fontWeight: 'bold'
+    },
+    green: {
+      backgroundColor: '#16966A',
+    },
+    gray: {
+      backgroundColor: 'rgba(0,0,0,.3)',
+    }
 });
 
 AppRegistry.registerComponent('SessionDetailView', () => SessionDetailView);
