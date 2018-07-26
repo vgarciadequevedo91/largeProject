@@ -42,7 +42,7 @@
 	}
 	else{
 		$stmt = $conn->stmt_init();
-		if(!$stmt->prepare("Select ClassID, Name from Class where Professor = ?")){
+		if(!$stmt->prepare("Select ClassID, Name from Class where ProfessorID = ?")){
 			$error_occurred = true;
 			returnWithError($conn->errno());
 		}
