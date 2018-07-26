@@ -1,7 +1,8 @@
 var deleteTarget, endTarget;
 var invalidSessionError = "Unable to access session.";
 var invalidProfError = "Could not find professor.";
-var baseURL = "http://localhost:8000/API"
+//var baseURL = "http://localhost:8000/API"
+var baseURL = "http://http://group5.gearhostpreview.com/originalDevSetup/API";
 var classID, className;
 
 function getInfo() {
