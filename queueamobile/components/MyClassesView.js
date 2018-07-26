@@ -15,7 +15,10 @@ export default class MyClassesView extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { errorText: '' };
+    this.state = { 
+      id: '',
+      errorText: '' 
+    };
   }
 
   render() {
@@ -59,8 +62,11 @@ export default class MyClassesView extends Component {
             placeholder='Enter the ID given by your instructor'
             keyboardType='numbers-and-punctuation'
             autoCapitalize='characters'
+            onChangeText={(id) => this.setState({id})}
+            value={this.state.id}
           />
           <QAButton
+              disabled={this.state.id == ''}
               onPress={() => joinClass(this.refs.idInput.state.text)}
               title='Join'
           />

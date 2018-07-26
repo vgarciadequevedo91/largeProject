@@ -7,12 +7,17 @@ export default class TextField extends Component {
     this.state = { text: '' };
   }
 
+  onChangeText(text) {
+    this.setState({text})
+    this.props.onChangeText(text)
+  }
+
   render() {
     return (
       <TextInput
         style={styles.textField}
         underlineColorAndroid='rgba(0,0,0,0)'
-        onChangeText={(text) => this.setState({text})}
+        onChangeText={(text) => this.onChangeText(text)}
         value={this.props.text}
         placeholder={this.props.placeholder}
         keyboardType={this.props.keyboardType}

@@ -79,6 +79,7 @@ export default class SurveyDetailView extends Component {
                 keyExtractor={(item, index) => index}
             />
             <QAButton
+              disabled={this.state.storedAnswer == 0}
               onPress={() => submitAnswer()}
               title='Submit'
             />

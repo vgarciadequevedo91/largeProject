@@ -87,16 +87,13 @@ export default class SessionDetailView extends Component {
               onChangeText={(text) => this.setState({text})}
               value={this.state.text}
               placeholder='Wondering anything?'
-              keyboardType={this.props.keyboardType}
-              autoCapitalize={this.props.autoCapitalize}
             />
-            <TouchableHighlight
+            <QAButton
+              styleOverride={styles.button}
               disabled={this.state.text.length == 0}
-              onPress={() => askQuestion()} underlayColor='white'>
-                <View style={[styles.button, this.state.text.length > 0 ? styles.enabledBtn : styles.disabledBtn]}>
-                    <Text style={[styles.title, this.state.text.length > 0 ? styles.enabledTitle : styles.disabledTitle]}>Ask</Text>
-                </View>
-            </TouchableHighlight>
+              onPress={() => askQuestion()}
+              title='Ask'
+            />
           </View>
           <SectionList
               style={styles.container}
@@ -192,21 +189,8 @@ const styles = StyleSheet.create({
   },
   button: {
     minWidth: 77,
-    paddingLeft: 20,
-    paddingRight: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 4,
     height: 50,
-    borderColor: 'rgba(0,0,0,.1)',
-  },
-  enabledBtn: {
-    backgroundColor: '#16966A',
-    borderWidth: 0
-  },
-  disabledBtn: {
-    backgroundColor: '#00000000',
-    borderWidth: 2
+    margin: 0,
   },
   title: {
     fontSize: 17,
