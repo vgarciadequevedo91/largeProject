@@ -21,9 +21,7 @@ export default class SurveyDetailView extends Component {
       const { questionText, id, answerChoices, numResponses } = this.props.navigation.state.params
 
       selectAnswer = (id) => {
-        this.setState(oldAnswer => {
-          return {storedAnswer: id};
-        });
+        this.setState({storedAnswer: id})
       }
 
       submitAnswer = () => {
@@ -72,6 +70,7 @@ export default class SurveyDetailView extends Component {
                     <View>
                         <AnswerButton
                             onPress={() => selectAnswer(item.index)}
+                            selected={this.state.storedAnswer == item.index}
                             title={item.answer}
                         />
                     </View>
@@ -91,7 +90,6 @@ export default class SurveyDetailView extends Component {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        // flex: 1
     },
     sectionHeader: {
         paddingTop: 30,

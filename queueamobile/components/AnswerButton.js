@@ -1,25 +1,12 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, TouchableHighlight, View, Text } from 'react-native';
 
-export default class AmswerButton extends Component {
-  constructor() {
-    super()
-
-    this.state = {
-        selected: false
-    }
-  }
-
+export default class AnswerButton extends Component {
   render() {
-    onPress = () => {
-      this.setState({selected: true})
-      this.props.onPress()
-    }
-
     return (
-        <TouchableHighlight onPress={() => onPress()} underlayColor='white'>
-            <View style={this.state.selected ? styles.selected : styles.deselected}>
-                <Text style={this.state.selected ? styles.selectedTitle : styles.deselectedTitle}>{this.props.title}</Text>
+        <TouchableHighlight onPress={this.props.onPress} underlayColor='white'>
+            <View style={this.props.selected ? styles.selected : styles.deselected}>
+                <Text style={this.props.selected ? styles.selectedTitle : styles.deselectedTitle}>{this.props.title}</Text>
             </View>
         </TouchableHighlight>
     );
@@ -69,4 +56,4 @@ const styles = StyleSheet.create({
     }
   })
 
-AppRegistry.registerComponent('AmswerButton', () => AmswerButton);
+AppRegistry.registerComponent('AnswerButton', () => AnswerButton);
