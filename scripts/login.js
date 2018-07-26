@@ -1,6 +1,8 @@
 //Local Testing
 //var baseURL = "http://localhost:3306/API";
 
+var baseURL = "http://http://group5.gearhostpreview.com/originalDevSetup/API";
+
 // Login error responses
 var badLogin = "Incorrect username or password";
 
