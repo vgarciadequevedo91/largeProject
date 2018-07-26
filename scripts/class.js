@@ -4,6 +4,7 @@ var invalidProfError = "Could not find professor.";
 
 //Local Testing
 //var baseURL = "http://localhost:3306/API"
+var baseURL = "http://http://group5.gearhostpreview.com/originalDevSetup/API";
 var classID, className;
 
 function getInfo() {
