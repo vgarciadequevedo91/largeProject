@@ -1,20 +1,41 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, TouchableHighlight, View, Text } from 'react-native';
+import { AppRegistry, StyleSheet, TouchableHighlight, View, Text, Image } from 'react-native';
 
 export default class AnswerButton extends Component {
   render() {
-    return (
-        <TouchableHighlight onPress={this.props.onPress} underlayColor='white'>
-            <View style={this.props.selected ? styles.selected : styles.deselected}>
-                <Text style={this.props.selected ? styles.selectedTitle : styles.deselectedTitle}>{this.props.title}</Text>
-            </View>
-        </TouchableHighlight>
-    );
+    if (this.props.selected) {
+        return (
+            <TouchableHighlight onPress={this.props.onPress} underlayColor='white'>
+                <View style={[styles.container, this.props.selected ? styles.selected : styles.deselected]}>
+                    <Text 
+                      style={[styles.title, this.props.selected ? styles.selectedTitle : styles.deselectedTitle]}>
+                        {this.props.title}
+                    </Text>
+                    <Image 
+                      style={styles.check} 
+                      source={require('../assets/check.png')}
+                    />
+                </View>
+            </TouchableHighlight>
+        );
+    }
+    else {
+        return (
+            <TouchableHighlight onPress={this.props.onPress} underlayColor='white'>
+                <View style={[styles.container, this.props.selected ? styles.selected : styles.deselected]}>
+                    <Text 
+                      style={[styles.title, this.props.selected ? styles.selectedTitle : styles.deselectedTitle]}>
+                        {this.props.title}
+                    </Text>
+                </View>
+            </TouchableHighlight>
+        );
+    }
   }
 }
 
 const styles = StyleSheet.create({
-    deselected: {
+    container: {
         marginTop: 10,
         marginBottom: 10,
         marginLeft: 20,
@@ -23,35 +44,32 @@ const styles = StyleSheet.create({
         paddingLeft: 16,
         paddingRight: 16,
         justifyContent: 'center',
-        backgroundColor: 'rgba(0,0,0,.03)',
-        borderColor: 'rgba(0,0,0,.3)',
+        // flexDirection: 'row',
         borderWidth: 2,
         borderRadius: 4,
         height: 50,
+    },
+    check: {
+        position: 'absolute',
+        alignSelf: 'flex-end',
+        right: 16
+    },
+    title: {
+        fontSize: 17
+    },
+    deselected: {
+        backgroundColor: 'rgba(0,0,0,.03)',
+        borderColor: 'rgba(0,0,0,.3)',
     },
     deselectedTitle: {
         color: 'black',
-        fontSize: 17
     },
-
     selected: {
-        marginTop: 10,
-        marginBottom: 10,
-        marginLeft: 20,
-        marginRight: 20,
-        minWidth: 100,
-        paddingLeft: 16,
-        paddingRight: 16,
-        justifyContent: 'center',
         backgroundColor: '#16966A1A',
         borderColor: '#16966A',
-        borderWidth: 2,
-        borderRadius: 4,
-        height: 50,
     },
     selectedTitle: {
         color: '#16966A',
-        fontSize: 17,
         fontWeight: 'bold'
     }
   })
