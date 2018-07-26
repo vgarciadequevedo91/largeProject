@@ -1,6 +1,6 @@
 var invalidSessionError = "Unable to access session";
 var invalidProfError = "Could not find professor.";
-var baseURL = "http://localhost:8000/API"
+//var baseURL = "http://localhost:8000/API"
 var deleteTarget = -1;
 
 function insertClass(className, classID, numStudents, numSessions){
