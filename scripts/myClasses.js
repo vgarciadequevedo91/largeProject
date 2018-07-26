@@ -1,7 +1,7 @@
 var invalidSessionError = "Unable to access session";
 var invalidProfError = "Could not find professor.";
 //var baseURL = "http://localhost:8000/API"
-var baseURL = "http://group5.gearhostpreview.com/originalDevSetup/API";
+var baseURL = "http://newlook.gearhostpreview.com/originalDevSetup/API";
 var deleteTarget = -1;
 
 function insertClass(className, classID, numStudents, numSessions){
