@@ -174,7 +174,9 @@ function trimmedClassList(){
 
                 var rawClasses = data.result;
                 var idx = 0;
-                while(idx < 36){
+                var threeCounter = 0;
+
+                while(idx < rawClasses.length && threeCounter < 3){
                     var classID = "";
                     var className = "";
                     var numStudents = "";
@@ -201,6 +203,8 @@ function trimmedClassList(){
 
                     insertClass(className, classID, numStudents, numSessions);
                     idx++;
+
+                    threeCounter++;
                 }
 
                 if(idx == 0){

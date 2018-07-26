@@ -55,14 +55,10 @@ export default class ClassDetailView extends Component {
               responseJson.sessionID, responseJson.dateCreated, responseJson.questionList)
             this.props.navigation.navigate('SessionDetailView', mySession)
           } else {
-            this.setState(previousText => {
-              return {errorText: '' + responseJson.error};
-            });
+            this.setState({errorText: '' + responseJson.error})
           }
         }).catch((error) => {
-          this.setState(previousText => {
-            return {errorText: '' + error};
-          });
+          this.setState({errorText: '' + error})
         });
       }
 

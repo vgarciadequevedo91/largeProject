@@ -52,6 +52,9 @@ export default class SessionDetailView extends Component {
                 { cancelable: false }
               )
             }
+            else {
+              this.setState({text: ''})
+            }
           }).catch((error) => {
             Alert.alert(
               'Question did not send',
@@ -67,31 +70,31 @@ export default class SessionDetailView extends Component {
 
       openSurvey = (survey) => {
         let surveyObj = new SurveyModel(survey.questionText, survey.pollID,
-        survey.answers.slice(0, survey.numAnswers))
+        survey.answers.filter(a => a.answer != ''))
         this.props.navigation.navigate('SurveyDetailView', surveyObj)
       }
 
       return (
         <View style={styles.container}>
-        <Text
-        style={styles.sectionHeader}>
-          Ask a Question
-        </Text>
+          <Text
+            style={styles.sectionHeader}>
+            Ask a Question
+          </Text>
           <View style={styles.form}>
             <TextInput
               style={styles.textField}
               underlineColorAndroid='rgba(0,0,0,0)'
               onChangeText={(text) => this.setState({text})}
-              text={this.state.text}
+              value={this.state.text}
               placeholder='Wondering anything?'
               keyboardType={this.props.keyboardType}
               autoCapitalize={this.props.autoCapitalize}
             />
             <TouchableHighlight
-            disabled={this.state.text.length == 0}
-            onPress={() => askQuestion()} underlayColor='white'>
-                <View style={[styles.button, this.state.text.length > 0 ? styles.green : styles.gray]}>
-                    <Text style={styles.title}>Ask</Text>
+              disabled={this.state.text.length == 0}
+              onPress={() => askQuestion()} underlayColor='white'>
+                <View style={[styles.button, this.state.text.length > 0 ? styles.enabledBtn : styles.disabledBtn]}>
+                    <Text style={[styles.title, this.state.text.length > 0 ? styles.enabledTitle : styles.disabledTitle]}>Ask</Text>
                 </View>
             </TouchableHighlight>
           </View>
@@ -118,7 +121,7 @@ export default class SessionDetailView extends Component {
             editable={false}
             ref='errorOutput'
             style={styles.errorText}
-            onChangeText={(errorText) => this.setState({errorText})}
+            onChangeText={(errorText) => {this.setState({errorText})}}
             value={this.state.errorText}
           />
         </View>
@@ -128,84 +131,93 @@ export default class SessionDetailView extends Component {
 
 const styles = StyleSheet.create({
   form: {
-    marginLeft: 30,
-    marginRight: 30,
+    marginLeft: 20,
+    marginRight: 20,
+    flexDirection: 'row'
   },
   container: {
-        backgroundColor: 'white',
-        flex: 1
-    },
-    sectionHeader: {
-        paddingTop: 10,
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingBottom: 10,
-        fontSize: 17,
-        backgroundColor: 'white',
-    },
-    questionText: {
-        paddingLeft: 30,
-        paddingRight: 30,
-        paddingTop: 20,
-        paddingBottom: 6,
-        fontSize: 17,
-        fontWeight: 'bold',
-    },
-    numResponses: {
-        paddingLeft: 30,
-        paddingRight: 30,
-        paddingBottom: 20,
-        fontSize: 15,
-        color: 'rgba(0,0,0,.5)'
-    },
-    separator: {
-        backgroundColor: 'rgba(0,0,0,.1)',
-        marginLeft: 30,
-        height: 1
-    },
-    questionInput: {
-      paddingLeft: 30,
-      paddingRight: 30,
-    },
-    errorText: {
-        fontSize: 15,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        margin: 40,
-        color: 'red'
-    },
-    textField: {
-      borderWidth: 2,
-      borderColor: 'rgba(0,0,0,.3)',
-      borderRadius: 4,
-      height: 50,
-      alignSelf: 'stretch',
-      marginTop: 10,
-      marginBottom: 10,
-      padding: 10,
-      fontSize: 15
-    },
-    button: {
-      margin: 20,
-      minWidth: 100,
+      backgroundColor: 'white',
+      flex: 1
+  },
+  sectionHeader: {
+      paddingTop: 20,
       paddingLeft: 20,
       paddingRight: 20,
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: 4,
-      height: 44,
-    },
-    title: {
-      color: 'white',
+      paddingBottom: 10,
       fontSize: 17,
-      fontWeight: 'bold'
-    },
-    green: {
-      backgroundColor: '#16966A',
-    },
-    gray: {
-      backgroundColor: 'rgba(0,0,0,.3)',
-    }
+      backgroundColor: 'white',
+  },
+  questionText: {
+      paddingLeft: 30,
+      paddingRight: 30,
+      paddingTop: 20,
+      paddingBottom: 6,
+      fontSize: 17,
+      fontWeight: 'bold',
+  },
+  numResponses: {
+      paddingLeft: 30,
+      paddingRight: 30,
+      paddingBottom: 20,
+      fontSize: 15,
+      color: 'rgba(0,0,0,.5)'
+  },
+  separator: {
+      backgroundColor: 'rgba(0,0,0,.1)',
+      marginLeft: 30,
+      height: 1
+  },
+  questionInput: {
+    paddingLeft: 30,
+    paddingRight: 30,
+  },
+  errorText: {
+      fontSize: 15,
+      fontWeight: 'bold',
+      textAlign: 'center',
+      margin: 40,
+      color: 'red'
+  },
+  textField: {
+    borderWidth: 2,
+    borderColor: 'rgba(0,0,0,.3)',
+    borderRadius: 4,
+    height: 50,
+    alignSelf: 'stretch',
+    marginRight: 10,
+    marginBottom: 10,
+    padding: 10,
+    fontSize: 15,
+    flex: 1
+  },
+  button: {
+    minWidth: 77,
+    paddingLeft: 20,
+    paddingRight: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 4,
+    height: 50,
+    borderColor: 'rgba(0,0,0,.1)',
+  },
+  enabledBtn: {
+    backgroundColor: '#16966A',
+    borderWidth: 0
+  },
+  disabledBtn: {
+    backgroundColor: '#00000000',
+    borderWidth: 2
+  },
+  title: {
+    fontSize: 17,
+    fontWeight: 'bold'
+  },
+  enabledTitle: {
+    color: 'white'
+  },
+  disabledTitle: {
+    color: 'rgba(0,0,0,.2)'
+  }
 });
 
 AppRegistry.registerComponent('SessionDetailView', () => SessionDetailView);
