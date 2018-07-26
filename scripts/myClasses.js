@@ -140,6 +140,83 @@ function refreshClasses(){
     }
 }
 
+//Returns three classes only
+function trimmedClassList(){
+    var payload = '{"session" : ""}';
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", baseURL + "/GetProfClass.php", false);
+    xhr.setRequestHeader("Content-type", "application/json; charset = UTF-8");
+
+    try{
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4){
+                var data = JSON.parse(xhr.responseText);
+                var error = data.error;
+
+                clearClasses();
+                if(error != '') {
+                    if(error == invalidSessionError){
+                        console.log("INVALID SESSION");
+                        window.location.href = "Login.html";
+                    }
+
+                    else if(error == invalidProfError){
+                        console.log("INVALID SESSION");
+                        window.location.href = "Login.html";
+                    }
+
+                    else {
+                        displayError(error);
+                    }
+                    return;
+                }
+
+                var rawClasses = data.result;
+                var idx = 0;
+                while(idx < 36){
+                    var classID = "";
+                    var className = "";
+                    var numStudents = "";
+                    var numSessions = "";
+
+                    while(rawClasses.charAt(idx) != ':'){
+                        classID = classID + rawClasses.charAt(idx++);
+                    }
+                    idx += 2;
+
+                    while(rawClasses.charAt(idx) != ':'){
+                        className = className + rawClasses.charAt(idx++);
+                    }
+                    idx += 2;
+
+                    while(rawClasses.charAt(idx) != ':'){
+                        numStudents = numStudents + rawClasses.charAt(idx++);
+                    }
+                    idx += 2;
+
+                    while(idx < rawClasses.length && rawClasses.charAt(idx) != '|'){
+                        numSessions = numSessions + rawClasses.charAt(idx++);
+                    }
+
+                    insertClass(className, classID, numStudents, numSessions);
+                    idx++;
+                }
+
+                if(idx == 0){
+                    insertEmtpyItem(document.getElementsByClassName("class-list-container")[0], "You have not created any classes");
+                }
+            }
+        }
+
+        xhr.send(payload);
+    }
+
+    catch(error){
+        console.log("Error: "+error);
+    }
+}
+
 function refreshPage(){
     refreshClasses();
 }
