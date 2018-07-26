@@ -9,7 +9,9 @@
 
 
 .navbar-default {
+  /* background-color: #581845; */
   background-color: #fff;
+  opacity: 0.9;
 }
 
 .nav-link {
