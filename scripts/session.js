@@ -1,6 +1,6 @@
 var invalidSessionError = "Unable to access session.";
 var invalidProfError = "Could not find professor.";
-var baseURL = "http://group5.gearhostpreview.com/originalDevSetup/API";
+var baseURL = "http://newlook.gearhostpreview.com/originalDevSetup/API";
 var deleteTarget = -1;
 var deletePollTarget = -1;
 var letters = ["A", "B", "C", "D", "E", "F", "G"];
