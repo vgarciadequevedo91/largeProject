@@ -61,49 +61,73 @@ h3 {
 }
 
 
-#sidebar {
-    font-family: 'Poppins', sans-serif;
-    position: absolute;
-    background: #fff;
-    min-width: 250px;
-    max-width: 250px;
-    min-height: 87vh; /*any larger and page will overflow*/
-    top: 63;
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 7px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.sidenav .buttonClose:hover{
+    background-color: #fff;
+    color:  #4CAF50;
+
+}
+
+
+
+.sidenav {
+    min-height: 100% !important;
+    height: 100% !important;
+
+    width: 250px;
+    float: left;
+    /* z-index: 1; */
+    top: 0;
     left: 0;
-    bottom: 0;
+    background-color: #fff;
+    /* background: linear-gradient(to bottom right, #222424, #363838); */
+    overflow-x: hidden;
+    transition: 0.1s;
+    padding-top: 25px;
 
+    opacity: 0.9;
 }
 
-#sidebar ul li {
-  text-align: left;
-  border-bottom: 1px solid #E0E0E0;
-}
-
-#sidebar ul li a {
-    padding: 17px;
+.sidenav ul li {
+    text-align: left;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-family: 'Poppins', sans-serif;
+    border-bottom: 1px solid #E0E0E0;
     font-size: 1.1em;
     display: block;
     color: black;
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
 }
-#sidebar ul li a:hover {
+
+.sidebar ul li:hover {
     color: #fff;
     background: #13B17F;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    border-bottom: 1px solid #E0E0E0;
     text-decoration: none;
+    font-size: 1.1em;
+    color: black;
+    display: block;
+    transition: 0.1s;
 }
 
 
-#copyright {
-
-    position: fixed;
-    bottom: 0;
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.75em;
+.sidenav a:hover {
     color: #fff;
-    width: 100%;
-    padding: 8px;
-    border-top: 1px solid #E0E0E0;
-    background: #13B17F;
-    text-align: center;
+    background: #13B17F
 }
