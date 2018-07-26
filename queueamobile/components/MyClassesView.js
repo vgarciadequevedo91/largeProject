@@ -21,9 +21,7 @@ export default class MyClassesView extends Component {
   render() {
     joinClass = (id) => {
       // Clear error text
-      this.setState(previousText => {
-        return {errorText: ''};
-      });
+      this.setState({errorText: ''})
 
       // Pull class information
       fetch('http://localhost:8000/API/StudentPullClassInfo.php', {
@@ -42,14 +40,11 @@ export default class MyClassesView extends Component {
             responseJson.classID, responseJson.professor, responseJson.sessionList)
           this.props.navigation.navigate('ClassDetailView', myClass)
         } else {
-          this.setState(previousText => {
-            return {errorText: '' + responseJson.error};
-          });
+          this.setState({errorText: '' + responseJson.error})
         }
       }).catch((error) => {
-        this.setState(previousText => {
-          return {errorText: '' + error};
-        });
+        console.warn(error)
+        this.setState({errorText: '' + error})
       });
     }
     return (

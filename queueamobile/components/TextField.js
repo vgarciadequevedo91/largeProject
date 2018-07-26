@@ -13,7 +13,7 @@ export default class TextField extends Component {
         style={styles.textField}
         underlineColorAndroid='rgba(0,0,0,0)'
         onChangeText={(text) => this.setState({text})}
-        text={this.props.text}
+        value={this.props.text}
         placeholder={this.props.placeholder}
         keyboardType={this.props.keyboardType}
         autoCapitalize={this.props.autoCapitalize}
