@@ -43,7 +43,7 @@
 	}
 	else{
 		$stmt = $conn->stmt_init();
-		if(!$stmt->prepare("INSERT INTO Class (Name, Professor) VALUES (?, ?)")){
+		if(!$stmt->prepare("INSERT INTO Class (Name, ProfessorID) VALUES (?, ?)")){
 			$error_occurred = true;
 			returnWithError($stmt->error);
 		}

@@ -23,7 +23,7 @@
 
     // First, pull the class information
     $stmt = $conn->stmt_init();
-    if (!$stmt->prepare("Select Name, Professor from Class where ClassID = ?")) {
+    if (!$stmt->prepare("Select Name, ProfessorID from Class where ClassID = ?")) {
       $error_occurred = true;
       returnWithError($conn->errno());
     } else {
