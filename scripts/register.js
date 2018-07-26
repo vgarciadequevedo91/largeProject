@@ -1,5 +1,5 @@
 //var baseURL = "http://localhost:8000/API"
-var baseURL = "http://http://group5.gearhostpreview.com/originalDevSetup/API";
+var baseURL = "http://group5.gearhostpreview.com/originalDevSetup/API";
 var userID = 0;
 
 function addProfessor() {
