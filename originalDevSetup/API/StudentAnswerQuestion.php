@@ -13,7 +13,7 @@
 
 	$error_occurred = false;
 	$numAns = 0;
-	
+
 	// Connect to database
 	$conn = new mysqli($servername, $dbUName, $dbPwd, $dbName);
 	if ($conn->connect_error){
@@ -36,7 +36,6 @@
 					exit();
 				}
 			}
-			returnWithError("");
 			$stmt->close();
 		}
 	}
