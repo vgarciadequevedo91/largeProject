@@ -1,6 +1,7 @@
 var invalidSessionError = "Unable to access session";
 var invalidProfError = "Could not find professor.";
-var baseURL = "http://localhost:8000/API"
+//Local Testing
+//var baseURL = "http://localhost:3306/API"
 var banTarget = -1;
 var unbanTarget = -1;
 var className = "CLASS NAME";

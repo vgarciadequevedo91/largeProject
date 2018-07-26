@@ -45,7 +45,7 @@
 </head>
 
 
-<body>
+<body onload="trimmedClassList()">
 
 
   <nav class = "navbar fixed-top navbar-expand-sm navbar-default ">
@@ -81,7 +81,7 @@
                     <!-- NEED TO MAKE IT SO CLASS-LIST-CONTAINER ONLY SHOWS 3 MOST RECENT CLASSES -->
  	               </div>
               <li>
-                 <a href="#">View All</a> <!-- WILL REDIRECT TO PAGE TO SHOW ALL CLASSES -->
+                 <a href="#" onclick="refreshClasses()">View All</a> <!-- WILL REDIRECT TO PAGE TO SHOW ALL CLASSES -->
               </li>
               <li>
                   <a href="#" data-toggle="modal" data-target="#newClassModal">Add New Class</a>
