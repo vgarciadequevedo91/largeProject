@@ -2,7 +2,7 @@ var deleteTarget, endTarget;
 var invalidSessionError = "Unable to access session.";
 var invalidProfError = "Could not find professor.";
 //var baseURL = "http://localhost:3306/API";
-var baseURL = "http://http://group5.gearhostpreview.com/originalDevSetup/API";
+var baseURL = "http:newlook.gearhostpreview.com/originalDevSetup/API";
 var classID, className;
 
 function getInfo() {
@@ -60,7 +60,6 @@ function addSession() {
 
 	var sessionName = document.getElementById("add-session-input").value;
     document.getElementById("add-session-input").value = "";
-    //var payload = '{"session" : "", "name" : "'+sessionName+'", "date" : "'+date+'"}';
     var payload = '{"session" : "", "name" : "'+sessionName+'"}';
 
 
@@ -266,7 +265,7 @@ function refreshSessions(){
 
                     if(idx == 0){
                         if(isActiveSession){
-                            insertEmtpyItem(document.getElementsByClassName("session-container")[0], "There are no active sessions");
+                            insertEmtpyItem(document.getElementsByClassName("session-list-container")[0], "There are no active sessions");
                         }
                         else{
                             insertEmtpyItem(document.getElementsByClassName("archive-container")[0], "There are no archived sessions");
@@ -295,7 +294,7 @@ function setDeleteTarget(id) {
 
 function newestFirst(){
     var sortMode = document.getElementById("sort-select");
-    if(sortMode.options[sortMode.selectedIndex].value == "newestFirst") return true;
+    //if(sortMode.options[sortMode.selectedIndex].value == "newestFirst") return true;
     return false;
 }
 
@@ -304,17 +303,17 @@ function clearSessions(activeSessions) {
     var container = "", classes = "";
     if (activeSessions) {
         container = document.getElementsByClassName("session-container")[0];
-        classes = container.getElementsByClassName("session");
+        //classes = container.getElementsByClassName("session");
     } else {
         container = document.getElementsByClassName("archive-container")[0];
-        classes = container.getElementsByClassName("archive-entry");
+        //classes = container.getElementsByClassName("archive-entry");
     }
 
     while(classes.length > 0){
         container.removeChild(classes[0]);
     }
 
-    clearEmtpyItems(container);
+    //clearEmtpyItems(container);
 }
 
 function gotoSession(id, name){
@@ -339,7 +338,7 @@ function gotoSession(id, name){
 
                     else{
                         displayError(error);
-                        // window.location.href = "http://cop4331-2.com/Login.html";
+
                     }
                     return;
                 }
@@ -402,7 +401,7 @@ function insertSession(isActiveSession, sessionName, sessionId, date) {
     var container = "";
     var sortNewest = newestFirst();
     if (isActiveSession) {
-        container = document.getElementsByClassName("session-container")[0];
+        container = document.getElementsByClassName("session-list-container")[0];
         container.appendChild(sessionElement);
     }
     else {
@@ -420,4 +419,6 @@ function insertSession(isActiveSession, sessionName, sessionId, date) {
             container.appendChild(sessionElement);
         }
     }
+}
+
 }
