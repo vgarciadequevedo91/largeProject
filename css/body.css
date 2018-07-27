@@ -144,11 +144,11 @@ h2 {
 }
 
 .libutton:hover {
-    background-color: #A8A8A8;
+      background-color: #13B17F;
 }
 
 .libutton:active {
-    background-color: #3B3B3B;
+    background-color: #fff;
 }
 
 
