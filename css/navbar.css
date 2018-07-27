@@ -12,6 +12,7 @@
   /* background-color: #581845; */
   background-color: #fff;
   opacity: 0.9;
+  border-bottom: 1.25px solid #E2E2E2;
 }
 
 .nav-link {
