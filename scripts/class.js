@@ -1,9 +1,7 @@
 var deleteTarget, endTarget;
 var invalidSessionError = "Unable to access session.";
 var invalidProfError = "Could not find professor.";
-
-//Local Testing
-//var baseURL = "http://localhost:3306/API"
+//var baseURL = "http://localhost:3306/API";
 var baseURL = "http://http://group5.gearhostpreview.com/originalDevSetup/API";
 var classID, className;
 
@@ -32,10 +30,10 @@ function getInfo() {
                         window.location.href = "Login.html";
                     }
 
-                    else{
+                    else {
                         displayError(error);
-                        // window.location.href = "http://cop4331-2.com/Login.html";
                     }
+
                     return;
                 }
 
@@ -52,10 +50,19 @@ function getInfo() {
 
 }
 
-function createNewSession() {
-	var sessionName = document.getElementById("create-new-session-input").value;
-    document.getElementById("create-new-session-input").value = "";
+function addSession() {
+
+    var date;
+    date = new Date();
+    date = date.getUTCFullYear() + '-' +
+        ('00' + (date.getUTCMonth()+1)).slice(-2) + '-' +
+        ('00' + date.getUTCDate()).slice(-2);
+
+	var sessionName = document.getElementById("add-session-input").value;
+    document.getElementById("add-session-input").value = "";
+    //var payload = '{"session" : "", "name" : "'+sessionName+'", "date" : "'+date+'"}';
     var payload = '{"session" : "", "name" : "'+sessionName+'"}';
+
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", baseURL + "/AddSession.php", false);
@@ -79,13 +86,15 @@ function createNewSession() {
                         window.location.href = "Login.html";
                     }
 
-                    else{
+                    else {
                         displayError(error);
-                        // window.location.href = "http://cop4331-2.com/Login.html";
                     }
+
                     return;
                 }
+                window.location.href = "openSession.html";
                 refreshSessions();
+
             }
         }
 
@@ -123,10 +132,10 @@ function endSession() {
                         window.location.href = "Login.html";
                     }
 
-                    else{
+                    else {
                         displayError(error);
-                        // window.location.href = "http://cop4331-2.com/Login.html";
                     }
+
                     return;
                 }
                 refreshSessions();
@@ -335,7 +344,7 @@ function gotoSession(id, name){
                     return;
                 }
 
-                window.location.href = "session.html";
+                window.location.href = "openSession.html";
             }
         }
 
