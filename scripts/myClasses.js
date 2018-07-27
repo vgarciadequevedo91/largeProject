@@ -4,8 +4,10 @@ var invalidProfError = "Could not find professor.";
 var baseURL = "http://newlook.gearhostpreview.com/originalDevSetup/API";
 var deleteTarget = -1;
 
+//Additional Stats commented out
 function insertClass(className, classID, numStudents, numSessions){
     // Stats information
+    /*
     var classIDElement = document.createElement("p");
     classIDElement.innerHTML = "Class ID: " + decToHex(classID);
 
@@ -13,14 +15,14 @@ function insertClass(className, classID, numStudents, numSessions){
     numStudentsElement.innerHTML = "Number of Students: " + numStudents;
 
     var numSessionsElement = document.createElement("p");
-    numSessionsElement.innerHTML = "Number of Sessions: " + numSessions;
+    numSessionsElement.innerHTML = "Number of Sessions: " + numSessions;*/
 
     // Stats container
     var classStatsContainer = document.createElement("div");
     classStatsContainer.className = "class-stats-container";
-    classStatsContainer.appendChild(classIDElement);
-    classStatsContainer.appendChild(numStudentsElement);
-    classStatsContainer.appendChild(numSessionsElement);
+    //classStatsContainer.appendChild(classIDElement);
+    //classStatsContainer.appendChild(numStudentsElement);
+    //classStatsContainer.appendChild(numSessionsElement);
 
     // Go to class button
     var goButton = document.createElement("button");
@@ -54,6 +56,7 @@ function insertClass(className, classID, numStudents, numSessions){
     var container = document.getElementsByClassName("class-list-container")[0];
     container.appendChild(classElement);
 }
+
 function clearClasses(){
     var container = document.getElementsByClassName("class-list-container")[0];
     var classes = container.getElementsByClassName("class-container");
