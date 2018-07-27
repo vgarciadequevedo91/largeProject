@@ -284,6 +284,92 @@ function refreshSessions(){
 
 }
 
+function archivedSessions(){
+    var payload = '{"session" : ""}';
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", baseURL + "/GetSession.php", false);
+    xhr.setRequestHeader("Content-type", "application/json; charset = UTF-8");
+
+    try{
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4){
+                var data = JSON.parse(xhr.responseText);
+                var error = data.error;
+
+                if(error != '') {
+
+                    if(error == invalidSessionError){
+                        console.log("INVALID SESSION");
+                        window.location.href = "Login.html";
+                    }
+
+                    else if(error == invalidProfError){
+                        console.log("INVALID SESSION");
+                        window.location.href = "Login.html";
+                    }
+
+                    else{
+                        displayError(error);
+                        // window.location.href = "http://cop4331-2.com/Login.html";
+                    }
+                    return;
+                }
+
+                var loopIdx;
+                for (loopIdx = 0; loopIdx < 2; loopIdx++) {
+                    var isActiveSession = (!loopIdx ? true : false);
+                    clearSessions(isActiveSession);
+                    var rawSessions = (!isActiveSession ? data.active : data.archived);
+                    var idx = 0;
+                    var threeCounter = 0;
+
+                    while(idx < rawSessions.length && threeCounter < 3){
+                        var sessionID = "";
+                        var sessionName = "";
+                        var date = "";
+
+                        while(rawSessions.charAt(idx) != ':'){
+                            sessionID = sessionID + rawSessions.charAt(idx++);
+                        }
+                        idx += 2;
+
+                        while(rawSessions.charAt(idx) != ':'){
+                            sessionName = sessionName + rawSessions.charAt(idx++);
+                        }
+                        idx += 2;
+
+                        while(idx < rawSessions.length && rawSessions.charAt(idx) != '|'){
+                            date = date + rawSessions.charAt(idx++);
+                        }
+
+                        insertSession(isActiveSession, sessionName, sessionID, date);
+                        idx ++;
+
+                        threeCounter++;
+                    }
+
+                    if(idx == 0){
+                        if(isActiveSession){
+                            insertEmtpyItem(document.getElementsByClassName("session-list-container")[0], "There are no active sessions");
+                        }
+                        else{
+                            insertEmtpyItem(document.getElementsByClassName("archive-container")[0], "There are no archived sessions");
+                        }
+                    }
+                }
+            }
+        }
+
+        xhr.send(payload);
+    }
+
+    catch(error){
+        console.log("Refresh Sessions Error: "+error);
+    }
+
+}
+
 function setEndTarget(id) {
     endTarget = id;
 }
@@ -315,6 +401,8 @@ function clearSessions(activeSessions) {
 
     //clearEmtpyItems(container);
 }
+
+
 
 function gotoSession(id, name){
     var payload = '{"session" : "", "sessionID" : "'+id+'", "sessionName" : "'+name+'"}';
