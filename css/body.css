@@ -145,6 +145,7 @@ h2 {
 
 .libutton:hover {
       background-color: #13B17F;
+      color: #fff;
 }
 
 .libutton:active {
