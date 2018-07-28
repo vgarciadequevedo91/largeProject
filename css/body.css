@@ -31,8 +31,11 @@ h2 {
     transition: margin-left .2s;
     padding: 16px;
     padding-bottom: 35px;
-    padding-left: 250px;
+    margin-left: 250px;
+
+
 }
+
 
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 7px;}
@@ -45,6 +48,19 @@ h2 {
   padding-bottom: 23vh;
   text-align: center;
 
+}
+
+
+.content_container {
+  opacity: 0.9;
+  width: 95%;
+  height: 86%;
+  padding: 10px;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 7px;
+  box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.1);
+  overflow: auto;
 }
 
 
