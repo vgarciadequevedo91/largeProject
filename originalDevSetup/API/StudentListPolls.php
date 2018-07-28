@@ -44,7 +44,7 @@
 
 		    // Finally get the professor polls for this session
 				$stmt = $conn->stmt_init();
-				if(!$stmt->prepare("Select PollID, Pollcol, QuestionText, NumAnswers,
+				if(!$stmt->prepare("Select PollID, QuestionText, NumAnswers,
 		      Answer1, Answer2, Answer3, Answer4, Answer5, DateCreated from Poll
 					where SessionID = ? and IsArchived = 0")) {
 					$error_occurred = true;
@@ -54,7 +54,7 @@
 					$stmt->bind_param("i", $sessionID);
 					$stmt->execute();
 					$stmt->store_result();
-					$stmt->bind_result($id, $pollCol, $text, $numAns, $ans1, $ans2, $ans3,
+					$stmt->bind_result($id, $text, $numAns, $ans1, $ans2, $ans3,
 					 $ans4, $ans5, $dateCreated);
 
 		      $count = 0;
@@ -64,7 +64,6 @@
 		        }
 
 		        $pollList = $pollList . '{"pollID":"' . $id . '",';
-						$pollList = $pollList . '"pollCol":"' . $pollCol . '",';
 		        $pollList = $pollList . '"questionText":"' . $text . '",';
 		        $pollList = $pollList . '"numAnswers":"' . $numAns . '",';
 						$pollList = $pollList . '"dateCreated":"' . $dateCreated . '",';
