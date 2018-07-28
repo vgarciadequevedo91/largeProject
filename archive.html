@@ -66,7 +66,7 @@ A LIST OF THE LAST 3 SESSIONS WILL BE NEEDED AS WELL AS A WAY TO SWITCH ON CLICK
 
 
 </head>
-<body onload="refreshSessions()">
+<body onload="archivedSessions()">
 
 
 
@@ -114,11 +114,17 @@ A LIST OF THE LAST 3 SESSIONS WILL BE NEEDED AS WELL AS A WAY TO SWITCH ON CLICK
 
 
       <div id="main">
-        <div class = "welcome">
+        <div class = "content_container">
+          <h1 id = "arch" style = "text-align: center; padding-top: 1.5%; padding-bottom: 1.5%">Archived Sessions</h1>
 
-            <!-- <h1>Welcome!</h1> -->
-            <h2>Click below to add</br>a session, or view your</br>current sessions using</br>the sidebar.</h2>
-            <button type = "button" class = "newClass" data-toggle="modal" data-target="#newSessionModal">&#43; New Session </button>
+        
+
+            <!-- Display All Archived Sessions -->
+            <div class = "archive-container">
+
+            </div>
+
+
         </div>
       </div>
 
@@ -150,27 +156,6 @@ A LIST OF THE LAST 3 SESSIONS WILL BE NEEDED AS WELL AS A WAY TO SWITCH ON CLICK
           </div>
         </div>
 
-        <!-- End session modal -->
-	<div class="modal fade" id="endSessionModal" tabindex="-1" role="dialog">
-		<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-			<div class="modal-content">
-
-				<div class="modal-header">
-					<h5 class="modal-title">Are you sure you want to end this session?</h5>
-					<button type="button" class="close" data-dismiss="modal" onclick="setEndTarget(-1)">
-					  <span>&times;</span>
-					</button>
-				</div>
-
-				<div class="modal-footer">
-					<button type="button" class="btn btn-modal-black" data-dismiss="modal" onclick="setEndTarget(-1)">No</button>
-					<button type="button" class="btn btn-modal-green" data-dismiss="modal" onclick="endSession()">Yes</button>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
           <!-- Delete session modal -->
         <div class="modal fade" id="deleteSessionModal" tabindex="-1" role="dialog">
           <div class="modal-dialog modal-dialog-centered" role="document">
@@ -191,7 +176,7 @@ A LIST OF THE LAST 3 SESSIONS WILL BE NEEDED AS WELL AS A WAY TO SWITCH ON CLICK
 
               <div class="modal-footer">
                 <button type="button" class="btn btn-modal-black" data-dismiss="modal" onclick="setDeleteTarget(-1, '')">No</button>
-                <button type="button" class="btn btn-modal-green" data-dismiss="modal" onclick="deleteSession()">Yes</button>
+                <button type="button" class="btn btn-modal-green" data-dismiss="modal" onclick="endSession()">Yes</button>
               </div>
 
             </div>
