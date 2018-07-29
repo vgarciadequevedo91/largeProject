@@ -1,10 +1,9 @@
 var invalidSessionError = "Unable to access session";
 var invalidProfError = "Could not find professor.";
-//var baseURL = "http://localhost:8000/API"
-var baseURL = "http://newlook.gearhostpreview.com/originalDevSetup/API";
+//var baseURL = "http://localhost:3306/API";
+var baseURL = "http://http://group5.gearhostpreview.com/originalDevSetup/API";
 var deleteTarget = -1;
 
-//Additional Stats commented out
 function insertClass(className, classID, numStudents, numSessions){
     // Stats information
     /*
@@ -65,7 +64,7 @@ function clearClasses(){
         container.removeChild(classes[0]);
     }
 
-    clearEmtpyItems(container);
+    //clearEmtpyItems(container);
 }
 
 function refreshClasses(){
@@ -258,7 +257,6 @@ function addClass(){
 
                     else{
                         displayError(error);
-                        // window.location.href = "http://cop4331-2.com/Login.html";
                     }
                     return;
                 }
@@ -301,7 +299,7 @@ function gotoClass(id, name){
                     return;
                 }
 
-                window.location.href = "Class.html";
+                window.location.href = "session.html";
             }
         }
 

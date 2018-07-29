@@ -1,6 +1,7 @@
 var invalidSessionError = "Unable to access session.";
 var invalidProfError = "Could not find professor.";
-var baseURL = "http://newlook.gearhostpreview.com/originalDevSetup/API";
+//var baseURL = "http://localhost:3306/API";
+var baseURL = "http://http://group5.gearhostpreview.com/originalDevSetup/API";
 var deleteTarget = -1;
 var deletePollTarget = -1;
 var letters = ["A", "B", "C", "D", "E", "F", "G"];
@@ -96,10 +97,10 @@ function refreshQuestions(){
 
                 if(idx == 0){
                     if(!showRead()){
-                        insertEmtpyItem(document.getElementsByClassName("questions-container")[0], "There are no unread questions");
+                        insertEmptyItem(document.getElementsByClassName("questions-container")[0], "There are no unread questions");
                     }
                     else {
-                        insertEmtpyItem(document.getElementsByClassName("questions-container")[0], "There are no questions");
+                        insertEmptyItem(document.getElementsByClassName("questions-container")[0], "There are no questions");
                     }
                 }
             }
@@ -113,15 +114,16 @@ function refreshQuestions(){
     }
 }
 
+
 function showRead(){
     var filterMode = document.getElementById("filter-select");
-    if(filterMode.options[filterMode.selectedIndex].value == "unreadOnly") return false;
+    //if(filterMode.options[filterMode.selectedIndex].value == "unreadOnly") return false; /////////
     return true;
 }
 
 function newestFirst(){
     var sortMode = document.getElementById("sort-select");
-    if(sortMode.options[sortMode.selectedIndex].value == "newestFirst") return true;
+    //if(sortMode.options[sortMode.selectedIndex].value == "newestFirst") return true; ///////////
     return false;
 }
 
@@ -133,7 +135,7 @@ function clearQuestions(){
         container.removeChild(questions[0]);
     }
 
-    clearEmtpyItems(container);
+    clearEmptyItems(container);
 }
 
 function toggleRead(id){
@@ -347,8 +349,8 @@ function getInfo() {
                     return;
                 }
 
-                document.getElementsByClassName("class-title")[0].innerHTML = data.className;
-                document.getElementsByClassName("class-id")[0].innerHTML = "Class ID: "+decToHex(data.classID);
+                //document.getElementsByClassName("class-title")[0].innerHTML = data.className;
+                //document.getElementsByClassName("class-id")[0].innerHTML = "Class ID: "+decToHex(data.classID);
                 document.title = data.sessionName + " | Queue & A";
                 className = data.className;
             }
@@ -503,7 +505,7 @@ function refreshPolls(){
                 }
 
                 if(idx == 0){
-                    insertEmtpyItem(document.getElementsByClassName("overhead-container-polls")[0], "There are no active polls");
+                    insertEmptyItem(document.getElementsByClassName("overhead-container-polls")[0], "There are no active polls");
                 }
 
                 // Update archived polls
@@ -558,7 +560,7 @@ function refreshPolls(){
                 }
 
                 if(idx == 0){
-                    insertEmtpyItem(document.getElementsByClassName("overhead-container-polls")[1], "There are no archived polls");
+                    insertEmptyItem(document.getElementsByClassName("overhead-container-polls")[1], "There are no archived polls");
                 }
 
 
@@ -581,7 +583,7 @@ function clearActivePolls(){
         container.removeChild(polls[0]);
     }
 
-    clearEmtpyItems(container);
+    clearEmptyItems(container);
 }
 
 function insertActivePoll(questionText, answerText, numAnswers, id){
@@ -762,7 +764,7 @@ function clearArchivedPolls(){
         container.removeChild(polls[0]);
     }
 
-    clearEmtpyItems(container);
+    clearEmptyItems(container);
 }
 
 function insertArchivedPoll(questionText, answerText, numAnswers, id){
