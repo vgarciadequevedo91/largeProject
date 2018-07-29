@@ -73,7 +73,7 @@ function logout(){
                     return;
                 }
 
-                window.location.href = "Login.html";
+                window.location.href = "index.html";
             }
         }
 
@@ -90,17 +90,17 @@ function insertEmptyItem(list, text){
     emptyElement.className = "blank-entry";
     emptyElement.innerHTML = text;
 
-    list.appendChild(emptyElement);
+    //list.appendChild(emptyElement);
 }
 
 function clearEmptyItems(list){
-    var emptyElements = list.getElementsByClassName("blank-entry");
+    var emptyElements = list.getElementsByClassName("");
     while(emptyElements.length > 0){
         list.removeChild(emptyElements[0]);
     }
 }
 
 function displayError(text){
-    document.getElementById("errorText").innerHTML = text;
+    //document.getElementById("errorText").innerHTML = text;
     $("#errorModal").modal()
 }
