@@ -85,7 +85,7 @@ function logout(){
     }
 }
 
-function insertEmtpyItem(list, text){
+function insertEmptyItem(list, text){
     var emptyElement = document.createElement("div");
     emptyElement.className = "blank-entry";
     emptyElement.innerHTML = text;
@@ -93,7 +93,7 @@ function insertEmtpyItem(list, text){
     list.appendChild(emptyElement);
 }
 
-function clearEmtpyItems(list){
+function clearEmptyItems(list){
     var emptyElements = list.getElementsByClassName("blank-entry");
     while(emptyElements.length > 0){
         list.removeChild(emptyElements[0]);
