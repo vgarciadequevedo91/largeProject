@@ -351,10 +351,10 @@ function archivedSessions(){
 
                     if(idx == 0){
                         if(isActiveSession){
-                            insertEmtpyItem(document.getElementsByClassName("session-list-container")[0], "There are no active sessions");
+                            insertEmptyItem(document.getElementsByClassName("session-list-container")[0], "There are no active sessions");
                         }
                         else{
-                            insertEmtpyItem(document.getElementsByClassName("archive-container")[0], "There are no archived sessions");
+                            insertEmptyItem(document.getElementsByClassName("archive-container")[0], "There are no archived sessions");
                         }
                     }
                 }
