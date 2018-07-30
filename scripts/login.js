@@ -7,8 +7,8 @@ var badLogin = "Incorrect username or password";
 
 function login(){
 
-    var email = document.getElementById("login-email").value;
-    var password = document.getElementById("login-password").value;
+	var email = document.getElementsByName("email")[0].value;
+	var password = md5(document.getElementsByName("password")[0].value);
 
 	var payload = '{"email" : "' + email + '", "password" : "' + password + '"}';
 
