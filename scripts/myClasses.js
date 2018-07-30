@@ -64,7 +64,7 @@ function clearClasses(){
         container.removeChild(classes[0]);
     }
 
-    //clearEmtpyItems(container);
+    //clearEmptyItems(container);
 }
 
 function refreshClasses(){
@@ -130,7 +130,7 @@ function refreshClasses(){
                 }
 
                 if(idx == 0){
-                    insertEmtpyItem(document.getElementsByClassName("class-list-container")[0], "You have not created any classes");
+                    insertEmptyItem(document.getElementsByClassName("class-list-container")[0], "You have not created any classes");
                 }
             }
         }
@@ -211,7 +211,7 @@ function trimmedClassList(){
                 }
 
                 if(idx == 0){
-                    insertEmtpyItem(document.getElementsByClassName("class-list-container")[0], "You have not created any classes");
+                    insertEmptyItem(document.getElementsByClassName("class-list-container")[0], "You have not created any classes");
                 }
             }
         }

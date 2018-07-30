@@ -1,27 +1,62 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, TextInput, StyleSheet, View, SectionList, TouchableHighlight, Alert } from 'react-native';
-import TextField from './TextField';
 import QAButton from './QAButton';
+import SessionModel from '../models/SessionModel';
 import SurveyModel from '../models/SurveyModel';
+import RefreshButton from './RefreshButton'
 
 export default class SessionDetailView extends Component {
-    static navigationOptions = ({ navigation }) => ({
+    static navigationOptions = ({ navigation }) => {
+      const { params = {} } = navigation.state
+
+      return {
         headerTitle: navigation.state.params.name,
         headerTintColor: '#16966A',
         headerTitleStyle: {
             color: 'black',
         },
+        headerRight: (
+            <RefreshButton onPress={params.refresh}/>
+        ),
         headerBackTitle: 'Session'
-    });
+      }
+    }
+
+    refresh = () => {
+      fetch('http://localhost:8000/API/StudentListPolls.php', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          sessionID: this.state.session.id,
+        }),
+      }).then((response) => response.json()).then((responseJson) => {
+        // Check response
+        if (responseJson.error === '' || responseJson.error === null) {
+          this.setState({session:
+            new SessionModel(this.state.session.name, responseJson.sessionID, this.state.session.createdAt, responseJson.questionList)
+          })
+        }
+      }).catch((error) => {
+        console.warn(error)
+      });
+    }
+
+    componentDidMount() {
+      this.props.navigation.setParams({refresh: this.refresh})
+    }
 
     constructor(props) {
       super(props);
-      this.state = { text: '' };
+      this.state = { 
+        session: this.props.navigation.state.params,
+        text: '' 
+      }
     }
 
     render() {
-      const { name, id, createdAt, surveys } = this.props.navigation.state.params
-
       askQuestion = (question) => {
         question = this.state.text;
         console.warn("Called")
@@ -37,7 +72,7 @@ export default class SessionDetailView extends Component {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              sessionID: id,
+              sessionID: this.state.session.id,
               text: question
             }),
           }).then((response) => response.json()).then((responseJson) => {
@@ -84,7 +119,7 @@ export default class SessionDetailView extends Component {
             <TextInput
               style={styles.textField}
               underlineColorAndroid='rgba(0,0,0,0)'
-              onChangeText={(text) => this.setState({text})}
+              onChangeText={(text) => this.setState({text: text})}
               value={this.state.text}
               placeholder='Wondering anything?'
             />
@@ -98,7 +133,7 @@ export default class SessionDetailView extends Component {
           <SectionList
               style={styles.container}
               sections={[
-                  {title: 'Surveys', data: surveys}
+                  {title: 'Surveys', data: this.state.session.surveys}
               ]}
               renderItem={({item}) =>
                   <TouchableHighlight underlayColor='rgba(0,0,0,0.1)' onPress={() => openSurvey(item)}>
@@ -118,7 +153,7 @@ export default class SessionDetailView extends Component {
             editable={false}
             ref='errorOutput'
             style={styles.errorText}
-            onChangeText={(errorText) => {this.setState({errorText})}}
+            onChangeText={(errorText) => {this.setState({text: errorText})}}
             value={this.state.errorText}
           />
         </View>

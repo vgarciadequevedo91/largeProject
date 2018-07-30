@@ -1,23 +1,62 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, TextInput, Button, StyleSheet, View, SectionList, TouchableHighlight } from 'react-native';
+import ClassModel from '../models/ClassModel';
 import SessionModel from '../models/SessionModel';
+import RefreshButton from './RefreshButton'
 
 export default class ClassDetailView extends Component {
-    static navigationOptions = ({ navigation }) => ({
-        headerTitle: navigation.state.params.name,
-        headerLeft: (
-            <Button
-            onPress={() => navigation.goBack(null)}
-            title="Close"
-            color="#16966A"
-            />
-        ),
-        headerBackTitle: 'Sessions'
-    });
+    static navigationOptions = ({ navigation }) => {
+        const { params = {} } = navigation.state
+
+        return {
+            headerTitle: navigation.state.params.name,
+            headerLeft: (
+                <Button
+                    onPress={() => navigation.goBack(null)}
+                    title="Close"
+                    color="#16966A"
+                />
+            ),
+            headerRight: (
+                <RefreshButton onPress={params.refresh}/>
+            ),
+            headerBackTitle: 'Class'
+        }
+    }
+
+    refresh = () => {
+        // Pull class information
+        fetch('http://localhost:8000/API/StudentPullClassInfo.php', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            classID: this.state.class.id,
+          }),
+        }).then((response) => response.json()).then((responseJson) => {
+          // Check response
+          if (responseJson.error === '' || responseJson.error === null) {
+            this.setState({class: 
+                new ClassModel(responseJson.className, responseJson.classID, responseJson.professor, responseJson.sessionList)
+            })
+          }
+        }).catch((error) => {
+          console.warn(error)
+        });
+    }
+
+    componentDidMount() {
+        this.props.navigation.setParams({refresh: this.refresh})
+    }
 
     constructor(props) {
       super(props);
-      this.state = { errorText: '' };
+      this.state = { 
+          class: this.props.navigation.state.params,
+          errorText: '' 
+        };
     }
 
     render() {
@@ -62,16 +101,14 @@ export default class ClassDetailView extends Component {
         });
       }
 
-      const { name, id, professor, sessions } = this.props.navigation.state.params
-
       return (
         <View style={styles.container}>
             <Text style={styles.caption}>
-                {'ID: ' + id + '\n' + professor}
+                {'ID: ' + this.state.class.id + '\n' + this.state.class.professor}
             </Text>
             <SectionList
                 sections={[{
-                    title: 'Active Sessions', data: sessions
+                    title: 'Active Sessions', data: this.state.class.sessions
                 }]}
                 renderItem={({item}) =>
                     <TouchableHighlight underlayColor='rgba(0,0,0,0.1)' onPress={() => openSession(item)}>
