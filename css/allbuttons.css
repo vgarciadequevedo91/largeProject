@@ -1,4 +1,7 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+/* CLASS BUTTONS */
+
 .btn-deleteClass {
 	visibility:hidden;
 }
@@ -133,15 +136,13 @@ background-color: white;
 
 }
 
+/* END CLASS BUTTONS */
 
 
 
 
 
-
-
-
-
+/* SESSION BUTTONS */
 .session-container {
 	margin-top: 5px;
 	margin-bottom: 50px;
@@ -371,3 +372,105 @@ color: #000000;
 	color:#B9B9B9;
 	text-align: center;
 }
+
+/* END SESSION BUTTONS */
+
+
+
+
+
+
+
+
+
+/* Q BUTTONS */
+.btn-menu {
+  visibility: hidden;
+}
+
+.btn-menu:after {
+  visibility: visible;
+
+	width: auto;
+	height: 20px;
+
+	padding: 0px;
+	margin-top: 0px;
+
+	cursor: pointer;
+	background-color: transparent;
+  color: black;
+	content: "⋮";
+  font-size: 1.3em;
+	border: none;
+
+
+}
+
+.btn-menu:hover:after, .btn-menu:active:after, .btn-menu:focus:after {
+	color: #13B17F;
+}
+
+.question {
+
+	height: auto;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-bottom: 20px;
+
+	padding-right: 20px;
+	padding-left: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+	color: black;
+	background-color: #FFFFFF;
+	box-shadow: 0px 0px 5px #CFCFCF;
+
+}
+
+.question-body {
+	display: flex;
+	margin-bottom: 6px;
+	font-weight: 500;
+}
+
+.question-footer {
+	display: flex;
+	align-content: center;
+}
+
+.question-timestamp{
+	flex:1;
+
+	font-size: 15px;
+	color: #979797;
+}
+
+.question-text {
+	flex: 1;
+	font-size: 0.9em;
+	padding: 0px;
+	margin-top: 0px;
+
+	padding-right: 30px;
+
+}
+
+.form-check {
+	padding: 0px;
+	margin: 0px;
+	font-size: 15px;
+	color: #979797;
+}
+
+.form-check p {
+	margin: 0px;
+	margin-top: -1px;
+}
+
+.form-check-input {
+	margin-right: 5px;
+}
+
+/* END Q BUTTONS */
