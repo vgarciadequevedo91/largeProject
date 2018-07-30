@@ -1,7 +1,7 @@
 var invalidSessionError = "Unable to access session";
 var invalidProfError = "Could not find professor.";
-var baseURL = "http://localhost:3306/API";
-//var baseURL = "http://http://group5.gearhostpreview.com/originalDevSetup/API";
+//var baseURL = "http://localhost:3306/API";
+var baseURL = "http://http://group5.gearhostpreview.com/originalDevSetup/API";
 var deleteTarget = -1;
 
 function insertClass(className, classID, numStudents, numSessions){
@@ -64,7 +64,7 @@ function clearClasses(){
         container.removeChild(classes[0]);
     }
 
-    //clearEmtpyItems(container);
+    //clearEmptyItems(container);
 }
 
 function refreshClasses(){
@@ -130,7 +130,7 @@ function refreshClasses(){
                 }
 
                 if(idx == 0){
-                    insertEmtpyItem(document.getElementsByClassName("class-list-container")[0], "You have not created any classes");
+                    insertEmptyItem(document.getElementsByClassName("class-list-container")[0], "You have not created any classes");
                 }
             }
         }
@@ -211,7 +211,7 @@ function trimmedClassList(){
                 }
 
                 if(idx == 0){
-                    insertEmtpyItem(document.getElementsByClassName("class-list-container")[0], "You have not created any classes");
+                    insertEmptyItem(document.getElementsByClassName("class-list-container")[0], "You have not created any classes");
                 }
             }
         }
