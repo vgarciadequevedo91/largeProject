@@ -52,13 +52,8 @@ function getInfo() {
 
 function addSession() {
 
-    var date;
-    date = new Date();
-    date = date.getUTCFullYear() + '-' +
-        ('00' + (date.getUTCMonth()+1)).slice(-2) + '-' +
-        ('00' + date.getUTCDate()).slice(-2);
 
-	var sessionName = document.getElementById("add-session-input").value;
+    var sessionName = document.getElementById("add-session-input").value;
     document.getElementById("add-session-input").value = "";
     var payload = '{"session" : "", "name" : "'+sessionName+'"}';
 
@@ -137,7 +132,7 @@ function endSession() {
 
                     return;
                 }
-                refreshSessions();
+                window.location.href = "Archive.html";
             }
         }
 
