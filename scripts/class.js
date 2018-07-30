@@ -487,8 +487,13 @@ function insertSession(isActiveSession, sessionName, sessionId, date) {
     var container = "";
     var sortNewest = newestFirst();
     if (isActiveSession) {
+
+        var sessionIDElement = document.createElement("p");
+        sessionIDElement.innerHTML = "Session ID: " + decToHex(sessionId);
+
         container = document.getElementsByClassName("session-list-container")[0];
         container.appendChild(sessionElement);
+        container.appendChild(sessionIDElement);
     }
     else {
         container = document.getElementsByClassName("archive-container")[0];
@@ -505,4 +510,5 @@ function insertSession(isActiveSession, sessionName, sessionId, date) {
             //container.appendChild(sessionElement);
         }
     }
+}
 }
