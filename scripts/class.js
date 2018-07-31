@@ -2,7 +2,7 @@ var deleteTarget, endTarget;
 var invalidSessionError = "Unable to access session.";
 var invalidProfError = "Could not find professor.";
 //var baseURL = "http://localhost:3306/API";
-var baseURL = "http:newlook.gearhostpreview.com/originalDevSetup/API";
+var baseURL = "http:group5.gearhostpreview.com/API";
 var classID, className;
 
 function getInfo() {
