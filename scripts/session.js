@@ -129,11 +129,12 @@ function newestFirst(){
 
 function clearQuestions(){
     var container = document.getElementsByClassName("questions-container")[0];
-    //var questions = container.getElementsByClassName("question");
+    /*
+    var questions = container.getElementsByClassName("question");
 
     while(questions.length > 0){
         container.removeChild(questions[0]);
-    }
+    }*/
 
     clearEmptyItems(container);
 }
