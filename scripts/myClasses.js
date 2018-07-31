@@ -1,15 +1,16 @@
 var invalidSessionError = "Unable to access session";
 var invalidProfError = "Could not find professor.";
 //var baseURL = "http://localhost:3306/API";
-var baseURL = "http:group5.gearhostpreview.com/API";
+var baseURL = "http://group5.gearhostpreview.com/API";
 var deleteTarget = -1;
 
 function insertClass(className, classID, numStudents, numSessions){
     // Stats information
-    /*
+
     var classIDElement = document.createElement("p");
     classIDElement.innerHTML = "Class ID: " + decToHex(classID);
 
+    /*
     var numStudentsElement = document.createElement("p");
     numStudentsElement.innerHTML = "Number of Students: " + numStudents;
 
@@ -19,7 +20,7 @@ function insertClass(className, classID, numStudents, numSessions){
     // Stats container
     var classStatsContainer = document.createElement("div");
     classStatsContainer.className = "class-stats-container";
-    //classStatsContainer.appendChild(classIDElement);
+    classStatsContainer.appendChild(classIDElement);
     //classStatsContainer.appendChild(numStudentsElement);
     //classStatsContainer.appendChild(numSessionsElement);
 
