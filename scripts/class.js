@@ -52,6 +52,7 @@ function getInfo() {
 
 function addSession() {
 
+    var date;
 
     var sessionName = document.getElementById("add-session-input").value;
     document.getElementById("add-session-input").value = "";
@@ -127,7 +128,7 @@ function endSession() {
                     }
 
                     else {
-                        displayError(error);
+                        //displayError(error);
                     }
 
                     return;
@@ -177,6 +178,7 @@ function deleteSession() {
                     return;
                 }
                 refreshSessions();
+                //refreshPage();
             }
         }
 
@@ -319,7 +321,7 @@ function archivedSessions(){
                     var idx = 0;
                     var threeCounter = 0;
 
-                    while(idx < rawSessions.length && threeCounter < 3){
+                    while(idx < rawSessions.length){
                         var sessionID = "";
                         var sessionName = "";
                         var date = "";
@@ -394,7 +396,7 @@ function clearSessions(activeSessions) {
         container.removeChild(classes[0]);
     }
 
-    //clearEmtpyItems(container);
+    //clearEmptyItems(container);
 }
 
 function gotoSession(id, name){
@@ -484,7 +486,7 @@ function insertSession(isActiveSession, sessionName, sessionId, date) {
     if (isActiveSession) {
 
         var sessionIDElement = document.createElement("p");
-        sessionIDElement.innerHTML = "Session ID: " + decToHex(sessionId);
+        sessionIDElement.innerHTML = "Session ID: " + sessionId;
 
         container = document.getElementsByClassName("session-list-container")[0];
         container.appendChild(sessionElement);
