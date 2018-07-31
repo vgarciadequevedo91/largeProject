@@ -102,5 +102,5 @@ function clearEmptyItems(list){
 
 function displayError(text){
     //document.getElementById("errorText").innerHTML = text;
-    $("#errorModal").modal()
+    //$("#errorModal").modal()
 }
