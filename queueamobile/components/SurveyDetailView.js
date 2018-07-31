@@ -27,7 +27,7 @@ export default class SurveyDetailView extends Component {
       submitAnswer = () => {
         if (this.state.storedAnswer > 0) {
           // Pull class information
-          fetch('http://localhost:8000/API/StudentAnswerQuestion.php', {
+          fetch('http://group5.gearhostpreview.com/API/StudentAnswerQuestion.php', {
             method: 'POST',
             headers: {
               Accept: 'application/json',

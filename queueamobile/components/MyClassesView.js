@@ -15,9 +15,9 @@ export default class MyClassesView extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       id: '',
-      errorText: '' 
+      errorText: ''
     };
   }
 
@@ -27,7 +27,7 @@ export default class MyClassesView extends Component {
       this.setState({errorText: ''})
 
       // Pull class information
-      fetch('http://localhost:8000/API/StudentPullClassInfo.php', {
+      fetch('http://group5.gearhostpreview.com/API/StudentPullClassInfo.php', {
         method: 'POST',
         headers: {
           Accept: 'application/json',

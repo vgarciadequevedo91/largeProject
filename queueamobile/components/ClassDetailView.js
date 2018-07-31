@@ -26,7 +26,7 @@ export default class ClassDetailView extends Component {
 
     refresh = () => {
         // Pull class information
-        fetch('http://localhost:8000/API/StudentPullClassInfo.php', {
+        fetch('http://group5.gearhostpreview.com/API/StudentPullClassInfo.php', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
@@ -38,7 +38,7 @@ export default class ClassDetailView extends Component {
         }).then((response) => response.json()).then((responseJson) => {
           // Check response
           if (responseJson.error === '' || responseJson.error === null) {
-            this.setState({class: 
+            this.setState({class:
                 new ClassModel(responseJson.className, responseJson.classID, responseJson.professor, responseJson.sessionList)
             })
           }
@@ -53,9 +53,9 @@ export default class ClassDetailView extends Component {
 
     constructor(props) {
       super(props);
-      this.state = { 
+      this.state = {
           class: this.props.navigation.state.params,
-          errorText: '' 
+          errorText: ''
         };
     }
 
@@ -78,7 +78,7 @@ export default class ClassDetailView extends Component {
 
       openSession = (session) => {
 
-        fetch('http://localhost:8000/API/StudentListPolls.php', {
+        fetch('http://group5.gearhostpreview.com/API/StudentListPolls.php', {
           method: 'POST',
           headers: {
             Accept: 'application/json',

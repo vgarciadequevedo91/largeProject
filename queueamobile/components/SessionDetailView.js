@@ -23,7 +23,7 @@ export default class SessionDetailView extends Component {
     }
 
     refresh = () => {
-      fetch('http://localhost:8000/API/StudentListPolls.php', {
+      fetch('http://group5.gearhostpreview.com/API/StudentListPolls.php', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -50,9 +50,9 @@ export default class SessionDetailView extends Component {
 
     constructor(props) {
       super(props);
-      this.state = { 
+      this.state = {
         session: this.props.navigation.state.params,
-        text: '' 
+        text: ''
       }
     }
 
@@ -65,7 +65,7 @@ export default class SessionDetailView extends Component {
         if(question.length > 0) {
 
           // Pull class information
-          fetch('http://localhost:8000/API/AskQuestionRN.php', {
+          fetch('http://group5.gearhostpreview.com/API/AskQuestionRN.php', {
             method: 'POST',
             headers: {
               Accept: 'application/json',
