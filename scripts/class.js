@@ -506,4 +506,3 @@ function insertSession(isActiveSession, sessionName, sessionId, date) {
         }
     }
 }
-}
