@@ -1,5 +1,5 @@
-var baseURL = "http://localhost:3306/API"
-//var baseURL = "http://newlook.gearhostpreview.com/originalDevSetup/API";
+//var baseURL = "http://localhost:3306/API"
+var baseURL = "http://newlook.gearhostpreview.com/originalDevSetup/API";
 var userID = 0;
 
 function addProfessor() {
