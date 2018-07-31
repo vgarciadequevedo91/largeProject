@@ -129,7 +129,7 @@ function newestFirst(){
 
 function clearQuestions(){
     var container = document.getElementsByClassName("questions-container")[0];
-    var questions = container.getElementsByClassName("question");
+    //var questions = container.getElementsByClassName("question");
 
     while(questions.length > 0){
         container.removeChild(questions[0]);
@@ -382,7 +382,7 @@ function addPoll() {
     var answer5 = document.getElementById("add-poll-answer5-input").value;
     document.getElementById("add-poll-answer5-input").value = "";
     var payload = '{"session" : "", "text" : "'+pollText+'", "answer1" : "' + answer1 + '", "answer2" : "' +
-            answer2 + '", "answer3" : "' + answer3 + '", "answer4" : "' + answer4 + '", "answer5" : "' + answer5 + '"}';
+        answer2 + '", "answer3" : "' + answer3 + '", "answer4" : "' + answer4 + '", "answer5" : "' + answer5 + '"}';
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", baseURL + "/CreatePoll.php", false);
@@ -981,7 +981,7 @@ function setChart(question, answers, numAnswers, id){
                     },
 
                     credits: {
-                      enabled: false
+                        enabled: false
                     },
 
                     series: [{
