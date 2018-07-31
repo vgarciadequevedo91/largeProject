@@ -1,5 +1,5 @@
-//var baseURL = "http://localhost:8000/API"
-var baseURL = "http://newlook.gearhostpreview.com/originalDevSetup/API";
+var baseURL = "http://localhost:3306/API"
+//var baseURL = "http://newlook.gearhostpreview.com/originalDevSetup/API";
 var userID = 0;
 
 function addProfessor() {
@@ -13,7 +13,6 @@ function addProfessor() {
 		return;
 	}
 
-	password = md5(password);
 	// replace with appropriate varaible names
 	var payload = '{"name" : "' + name + '", "email" : "' + email + '", "password" : "' + password + '"}';
 
@@ -27,11 +26,6 @@ function addProfessor() {
 				var data = JSON.parse(xhr.responseText);
 				var error = data.error;
 
-				if(error !== "") {
-					document.getElementsByName("response")[0].innerHTML = error;
-					return;
-				}
-
 				window.location.href = "Login.html";
 			}
 		}
@@ -39,8 +33,6 @@ function addProfessor() {
 		xhr.send(payload);
 	}
 	catch(error) {
-		// include result of creation in HTML
-		document.getElementsByName("response")[0].innerHTML = error.message;
 	}
 	return false;
 }
