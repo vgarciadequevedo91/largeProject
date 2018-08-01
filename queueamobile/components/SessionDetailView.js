@@ -139,7 +139,7 @@ export default class SessionDetailView extends Component {
                   <TouchableHighlight underlayColor='rgba(0,0,0,0.1)' onPress={() => openSurvey(item)}>
                       <View>
                           <Text style={styles.questionText}>{item.questionText}</Text>
-                          <Text style={styles.numResponses}>{item.numAnswers + " responses"}</Text>
+                          <Text style={styles.numResponses}>{item.numAnswers + " answer choices"}</Text>
                           <View style={styles.separator}></View>
                       </View>
                   </TouchableHighlight>

@@ -26,7 +26,6 @@ export default class SurveyDetailView extends Component {
 
       submitAnswer = () => {
         if (this.state.storedAnswer > 0) {
-          // Pull class information
           fetch('http://group5.gearhostpreview.com/API/StudentAnswerQuestion.php', {
             method: 'POST',
             headers: {
@@ -48,6 +47,10 @@ export default class SurveyDetailView extends Component {
                 ],
                 { cancelable: false }
               )
+            }
+            else {
+                const {goBack} = this.props.navigation
+                goBack()
             }
           }).catch((error) => {
             Alert.alert(
