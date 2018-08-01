@@ -178,6 +178,7 @@ const styles = StyleSheet.create({
       paddingBottom: 10,
       fontSize: 17,
       backgroundColor: 'white',
+      color: 'black'
   },
   questionText: {
       paddingLeft: 30,
@@ -186,6 +187,7 @@ const styles = StyleSheet.create({
       paddingBottom: 6,
       fontSize: 17,
       fontWeight: 'bold',
+      color: 'black'
   },
   numResponses: {
       paddingLeft: 30,

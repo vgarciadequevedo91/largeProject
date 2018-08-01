@@ -5,8 +5,6 @@ import TextField from './TextField';
 import QAButton from './QAButton';
 import Subhead from './Subhead';
 import ClassModel from '../models/ClassModel';
-import SessionModel from '../models/SessionModel';
-import SurveyModel from '../models/SurveyModel';
 
 export default class MyClassesView extends Component {
   static navigationOptions = {

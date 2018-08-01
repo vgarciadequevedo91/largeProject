@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, TextInput, Button, StyleSheet, View, SectionList, TouchableHighlight } from 'react-native';
+import { AppRegistry, Text, TextInput, Image, StyleSheet, View, SectionList, TouchableHighlight, Platform } from 'react-native';
 import ClassModel from '../models/ClassModel';
 import SessionModel from '../models/SessionModel';
 import RefreshButton from './RefreshButton'
@@ -11,11 +11,12 @@ export default class ClassDetailView extends Component {
         return {
             headerTitle: navigation.state.params.name,
             headerLeft: (
-                <Button
-                    onPress={() => navigation.goBack(null)}
-                    title="Close"
-                    color="#16966A"
-                />
+                <TouchableHighlight 
+                  style={{paddingLeft: Platform.OS === 'ios' ? 0 : 8}}
+                  onPress={() => navigation.goBack(null)} 
+                  underlayColor='#00000000'>
+                    <Image source={require('../assets/close.png')}/>
+                </TouchableHighlight>
             ),
             headerRight: (
                 <RefreshButton onPress={params.refresh}/>
@@ -153,6 +154,7 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         fontSize: 17,
         backgroundColor: 'white',
+        color: 'black'
     },
     sessionName: {
         paddingLeft: 30,
@@ -161,6 +163,7 @@ const styles = StyleSheet.create({
         paddingBottom: 6,
         fontSize: 17,
         fontWeight: 'bold',
+        color: 'black'
     },
     sessionDate: {
         paddingLeft: 30,

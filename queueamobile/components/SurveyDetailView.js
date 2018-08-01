@@ -102,7 +102,8 @@ const styles = StyleSheet.create({
         paddingBottom: 30,
         fontSize: 17,
         backgroundColor: 'white',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: 'black'
     },
     choice: {
         paddingLeft: 30,
