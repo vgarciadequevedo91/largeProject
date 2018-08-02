@@ -713,7 +713,7 @@ function updateChartModal(question, answers){
     // Create chart container
     var chart = document.createElement("div");
     chart.id = "chart-container";
-    chart.style = "min-width: 810px; height: 400px; margin: 0 auto";
+    chart.style = "height: 400px; margin: 0 auto";
 
     var chartContainer = document.createElement("div");
     chartContainer.className = "results-container";
