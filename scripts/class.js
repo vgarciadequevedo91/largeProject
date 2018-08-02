@@ -87,7 +87,7 @@ function addSession() {
 
                     return;
                 }
-                window.location.href = "openSession.html";
+                //window.location.href = "openSession.html";
                 refreshSessions();
 
             }
@@ -134,6 +134,7 @@ function endSession() {
                     return;
                 }
                 window.location.href = "Archive.html";
+
             }
         }
 
@@ -177,8 +178,10 @@ function deleteSession() {
                     }
                     return;
                 }
+
                 refreshSessions();
-                //refreshPage();
+                setDeleteTarget(-1, "");
+
             }
         }
 
@@ -194,7 +197,15 @@ function refreshPage(){
     refreshSessions();
     getInfo();
     document.getElementsByClassName("class-title")[0].innerHTML = className;
-    document.getElementsByClassName("class-id")[0].innerHTML = "Class ID: " + decToHex(classID);
+    document.getElementsByClassName("class-id")[0].innerHTML = "Class ID: " + classID;
+    document.title = className + " | Queue & A";
+}
+
+function refreshPageArchive(){
+    archivedSessions();
+    getInfo();
+    document.getElementsByClassName("class-title")[0].innerHTML = className;
+    document.getElementsByClassName("class-id")[0].innerHTML = "Class ID: " + classID;
     document.title = className + " | Queue & A";
 }
 
@@ -315,9 +326,9 @@ function archivedSessions(){
 
                 var loopIdx;
                 for (loopIdx = 0; loopIdx < 2; loopIdx++) {
-                    var isActiveSession = (!loopIdx ? true : false);
-                    clearSessions(isActiveSession);
-                    var rawSessions = (!isActiveSession ? data.active : data.archived);
+                    var isArchiveSession = (loopIdx ? false : true);
+                    clearArchive(isArchiveSession);
+                    var rawSessions = (isArchiveSession ? data.archived : data.active);
                     var idx = 0;
                     var threeCounter = 0;
 
@@ -340,18 +351,18 @@ function archivedSessions(){
                             date = date + rawSessions.charAt(idx++);
                         }
 
-                        insertSession(isActiveSession, sessionName, sessionID, date);
+                        insertSession(isArchiveSession, sessionName, sessionID, date);
                         idx ++;
 
                         threeCounter++;
                     }
 
                     if(idx == 0){
-                        if(isActiveSession){
-                            insertEmptyItem(document.getElementsByClassName("session-list-container")[0], "There are no active sessions");
-                        }
-                        else{
+                        if (isArchiveSession) {
                             insertEmptyItem(document.getElementsByClassName("archive-container")[0], "There are no archived sessions");
+                        }
+                        else {
+                            insertEmptyItem(document.getElementsByClassName("session-list-container")[0], "There are no active sessions");
                         }
                     }
                 }
@@ -390,6 +401,23 @@ function clearSessions(activeSessions) {
     } else {
         container = document.getElementsByClassName("archive-container")[0];
         //classes = container.getElementsByClassName("archive-entry");
+    }
+
+    while(classes.length > 0){
+        container.removeChild(classes[0]);
+    }
+
+    //clearEmptyItems(container);
+}
+
+function clearArchive(archivedSessions) {
+    var container = "", classes = "";
+    if (archivedSessions) {
+        container = document.getElementsByClassName("archive-container")[0];
+        //classes = container.getElementsByClassName("archive-entry");
+    } else {
+        container = document.getElementsByClassName("session-container")[0];
+        //classes = container.getElementsByClassName("session");
     }
 
     while(classes.length > 0){
